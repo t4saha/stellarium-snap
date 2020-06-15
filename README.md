@@ -12,12 +12,8 @@
 <a href="https://build.snapcraft.io/user/t4saha/stellarium"><img src="https://build.snapcraft.io/badge/t4saha/stellarium.svg" alt="Snap Status"></a>
 </p>
 
-
-<!-- Uncomment and modify this when you have a screenshot
-![stellarium-daily](screenshot.png?raw=true "stellarium-daily")
--->
-
-## Install
-
-    sudo snap install stellarium-daily
-    
+<p align="center"><a href="https://snapcraft.io/stellarium-daily">
+  <img alt="Get it from the Snap Store" src="https://snapcraft.io/static/images/badges/en/snap-store-black.svg" />
+</a></p>
+<p align="center">Or</p>
+<p align="center"><b>"sudo snap install stellarium-daily"</b></p>
