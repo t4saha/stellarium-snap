@@ -56,6 +56,7 @@ parts:
       # If the latest tag from the upstream project has not been released to
       # beta, build that tag instead of master.
       if [ "${last_committed_tag}" != "${last_released_tag}" ]; then
+        pwd
         git fetch
         cd ../src
         git checkout "${last_committed_tag}"
