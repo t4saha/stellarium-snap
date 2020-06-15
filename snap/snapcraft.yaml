@@ -35,7 +35,7 @@ parts:
       - -DCMAKE_INSTALL_PREFIX:PATH=/usr
     source: https://github.com/Stellarium/stellarium.git
     source-type: git
-    source-depth : 1
+    #source-depth : 1
     #source-tag: v0.20.1
     organize:
       snap/stellarium-daily/current/usr: usr
@@ -56,7 +56,7 @@ parts:
       # If the latest tag from the upstream project has not been released to
       # beta, build that tag instead of master.
       if [ "${last_committed_tag}" != "${last_released_tag}" ]; then
-        pwd
+        #pwd
         git fetch
         cd ../src
         git checkout "${last_committed_tag}"
