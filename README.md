@@ -16,7 +16,7 @@
 
 <p><i>“It is a free open source planetarium for your computer. It shows a realistic sky in 3D, just like what you see with the naked eye, binoculars or a telescope.”</i></p>
 <p> It works on Ubuntu, Fedora, Debian, and other major Linux distributions.</p>
-<p><a href="https://http://stellarium.org/"> Stellarium Website </a></p>
+<p><a href="https://stellarium.org/"> Stellarium Website </a></p>
 
 ## Installation
 <p align="left"><b>"sudo snap install stellarium-daily"</b></p>
