@@ -30,7 +30,7 @@ apps:
 parts:
   stellarium:
     plugin: cmake
-    configflags:
+    cmake-parameters:
       - -DCMAKE_BUILD_TYPE=Release
       - -DCMAKE_INSTALL_PREFIX:PATH=/usr
     source: https://github.com/Stellarium/stellarium.git
