@@ -61,11 +61,14 @@ parts:
         #cd ../src
         #git checkout "${last_committed_tag}"
         git clone -b "${last_committed_tag}" --depth 1 https://github.com/Stellarium/stellarium.git .
+        snapcraftctl set-version "${last_committed_tag}"
       else
         git clone --depth 1 https://github.com/Stellarium/stellarium.git .
+        #snapcraftctl set-version "$(echo "$(git ls-remote --tags https://github.com/Stellarium/stellarium.git | grep -v {} | awk -F/ '{ print $3 }' | sort -V |tail -n 1)-g$(git ls-remote https://github.com/Stellarium/stellarium.git HEAD | awk '{ print substr($1,1,7)}')")"
+        snapcraftctl set-version "${last_committed_tag}-g$(git ls-remote https://github.com/Stellarium/stellarium.git HEAD | awk '{ print substr($1,1,7)}')"
       fi
 
-      snapcraftctl set-version "$(git describe --tag)"
+      #snapcraftctl set-version "$(git describe --tag)"
 
     #override-build: |
       #snapcraftctl build
