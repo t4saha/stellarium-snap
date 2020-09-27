@@ -11,7 +11,7 @@ adopt-info: stellarium
 grade: stable # must be 'stable' to release into candidate/stable channels
 confinement: strict
 
-architectures: #build Architectures
+#architectures: #build Architectures
    #- build-on: amd64 
    #- build-on: i386
    #- build-on: arm64
