@@ -43,7 +43,7 @@ parts:
     organize:
       snap/stellarium-daily/current/usr: usr
       #snap/stellarium-daily/current/share: share
-    parse-info: [usr/share/metainfo/stellarium.appdata.xml] #appstream info
+    parse-info: [usr/share/metainfo/org.stellarium.Stellarium.appdata.xml] #appstream info
     after : [desktop-stellarium]
 
     override-pull: |
