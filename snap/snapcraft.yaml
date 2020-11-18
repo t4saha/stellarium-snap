@@ -11,8 +11,8 @@ adopt-info: stellarium
 grade: stable # must be 'stable' to release into candidate/stable channels
 confinement: strict
 
-#architectures: #build Architectures
-   #- build-on: amd64 
+architectures: #build Architectures
+   - build-on: amd64 
    #- build-on: i386
    #- build-on: arm64
 
@@ -84,7 +84,7 @@ parts:
       #mkdir -p $SNAPCRAFT_PART_INSTALL/usr/share/icons/hicolor/48x48/apps
       #cp ../src/data/icons/48x48/stellarium.png $SNAPCRAFT_PART_INSTALL/usr/share/icons/hicolor/48x48/apps
       mkdir -p $SNAPCRAFT_PART_INSTALL/usr/share/icons/hicolor/64x64/apps
-      #cp ../src/data/icons/64x64/stellarium.png $SNAPCRAFT_PART_INSTALL/usr/share/icons/hicolor/64x64/apps
+      cp ../src/data/icons/64x64/stellarium.png $SNAPCRAFT_PART_INSTALL/usr/share/icons/hicolor/64x64/apps
       #mkdir -p $SNAPCRAFT_PART_INSTALL/usr/share/icons/hicolor/128x128/apps
       #cp ../src/data/icons/128x128/stellarium.png $SNAPCRAFT_PART_INSTALL/usr/share/icons/hicolor/128x128/apps
       #mkdir -p $SNAPCRAFT_PART_INSTALL/usr/share/icons/hicolor/256x256/apps
