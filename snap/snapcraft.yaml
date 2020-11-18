@@ -1,6 +1,6 @@
 name: stellarium-daily # you probably want to 'snapcraft register <name>'
-base: core18
-#base: core20 # the base snap is the execution environment for this snap
+#base: core18
+base: core20 # the base snap is the execution environment for this snap
 #version: '0.+git' # just for humans, typically '1.2+git' or '1.3.2'
 #version : 0.20.1
 #summary: Free, open source planetarium software # 79 char long summary
@@ -18,8 +18,8 @@ architectures: #build Architectures
 
 apps:
   stellarium:
-    command: desktop-launch $SNAP/usr/bin/stellarium
-    #command: bin/desktop-launch $SNAP/usr/bin/stellarium
+    #command: desktop-launch $SNAP/usr/bin/stellarium
+    command: bin/desktop-launch $SNAP/usr/bin/stellarium
     #desktop: share/applications/stellarium.desktop
     common-id: org.stellarium.Stellarium
     plugs: [desktop, wayland, x11, unity7, gsettings, opengl, network, network-bind, audio-playback, home, raw-usb]
@@ -32,8 +32,8 @@ apps:
 parts:
   stellarium:
     plugin: cmake
-    configflags:
-    #cmake-parameters:
+    #configflags:
+    cmake-parameters:
       - -DCMAKE_BUILD_TYPE=Release
       - -DCMAKE_INSTALL_PREFIX:PATH=/usr
     source: https://github.com/Stellarium/stellarium.git
