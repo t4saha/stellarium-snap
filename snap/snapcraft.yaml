@@ -73,8 +73,8 @@ parts:
 
       snapcraftctl set-version "$(git describe --tag)"
 
-    override-build: |
-      snapcraftctl build
+    #override-build: |
+      #snapcraftctl build
       #mkdir -p $SNAPCRAFT_PART_INSTALL/usr/share/applications
       #cp ../src/data/stellarium.desktop $SNAPCRAFT_PART_INSTALL/usr/share/applications
       #mkdir -p $SNAPCRAFT_PART_INSTALL/usr/share/icons/hicolor/16x16/apps
@@ -83,8 +83,8 @@ parts:
       #cp ../src/data/icons/32x32/stellarium.png $SNAPCRAFT_PART_INSTALL/usr/share/icons/hicolor/32x32/apps
       #mkdir -p $SNAPCRAFT_PART_INSTALL/usr/share/icons/hicolor/48x48/apps
       #cp ../src/data/icons/48x48/stellarium.png $SNAPCRAFT_PART_INSTALL/usr/share/icons/hicolor/48x48/apps
-      mkdir -p $SNAPCRAFT_PART_INSTALL/usr/share/icons/hicolor/64x64/apps
-      cp ../src/data/icons/64x64/stellarium.png $SNAPCRAFT_PART_INSTALL/usr/share/icons/hicolor/64x64/apps
+      #mkdir -p $SNAPCRAFT_PART_INSTALL/usr/share/icons/hicolor/64x64/apps
+      #cp ../src/data/icons/64x64/stellarium.png $SNAPCRAFT_PART_INSTALL/usr/share/icons/hicolor/64x64/apps
       #mkdir -p $SNAPCRAFT_PART_INSTALL/usr/share/icons/hicolor/128x128/apps
       #cp ../src/data/icons/128x128/stellarium.png $SNAPCRAFT_PART_INSTALL/usr/share/icons/hicolor/128x128/apps
       #mkdir -p $SNAPCRAFT_PART_INSTALL/usr/share/icons/hicolor/256x256/apps
