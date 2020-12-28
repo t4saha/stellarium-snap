@@ -98,11 +98,11 @@ parts:
       #mkdir -p $SNAPCRAFT_PART_INSTALL/usr/share/icons/hicolor/512x512/apps
       #cp ../src/data/icons/512x512/stellarium.png $SNAPCRAFT_PART_INSTALL/usr/share/icons/hicolor/512x512/apps
       
-    override-prime: |
-      set -x
-      snapcraftctl prime
-      mkdir -p $SNAPCRAFT_PRIME/usr/share/icons/hicolor/64x64/apps
-      cp $SNAPCRAFT_PART_INSTALL/usr/share/icons/hicolor/128x128/apps/stellarium.png $SNAPCRAFT_PRIME/usr/share/icons/hicolor/64x64/apps
+    #override-prime: |
+      #set -x
+      #snapcraftctl prime
+      #mkdir -p $SNAPCRAFT_PRIME/usr/share/icons/hicolor/64x64/apps
+      #cp $SNAPCRAFT_PART_INSTALL/usr/share/icons/hicolor/128x128/apps/stellarium.png $SNAPCRAFT_PRIME/usr/share/icons/hicolor/64x64/apps
       
     build-packages:
       - build-essential
