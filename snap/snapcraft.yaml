@@ -13,8 +13,8 @@ confinement: strict
 
 architectures: #build Architectures
    - build-on: amd64 
-   - build-on: i386
-   - build-on: arm64
+   #- build-on: i386
+   #- build-on: arm64
 
 apps:
   stellarium:
@@ -101,7 +101,7 @@ parts:
     override-prime: |
       set -x
       snapcraftctl prime
-      #$SNAPCRAFT_PART_INSTALL/usr/share/icons/hicolor/64x64/apps/stellarium.png SNAPCRAFT_PRIME/usr/share/icons/hicolor/64x64/apps
+      cp $SNAPCRAFT_PART_INSTALL/usr/share/icons/hicolor/64x64/apps/stellarium.png SNAPCRAFT_PRIME/usr/share/icons/hicolor/64x64/apps
       
     build-packages:
       - build-essential
