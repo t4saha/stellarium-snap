@@ -96,6 +96,12 @@ parts:
       #cp ../src/data/icons/256x256/stellarium.png $SNAPCRAFT_PART_INSTALL/usr/share/icons/hicolor/256x256/apps
       #mkdir -p $SNAPCRAFT_PART_INSTALL/usr/share/icons/hicolor/512x512/apps
       #cp ../src/data/icons/512x512/stellarium.png $SNAPCRAFT_PART_INSTALL/usr/share/icons/hicolor/512x512/apps
+      
+    override-prime: |
+      snapcraftctl prime
+      set -x
+      cp ../src/data/icons/64x64/stellarium.png SNAPCRAFT_PRIME/usr/share/icons/hicolor/64x64/apps
+      
     build-packages:
       - build-essential
       - doxygen
