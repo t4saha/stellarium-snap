@@ -45,11 +45,11 @@ parts:
       #snap/stellarium-daily/current/share: share
     parse-info: [usr/share/metainfo/org.stellarium.Stellarium.appdata.xml] #appstream info
     after: [desktop-stellarium]
-    filesets: 
-      f_exclude:
-        - -usr/share/icons/hicolor/64x64/apps/*
-    prime:
-      - $f_exclude
+    #filesets: 
+      #f_exclude:
+        #- -usr/share/icons/hicolor/64x64/apps/*
+    #prime:
+      #- $f_exclude
 
     override-pull: |
       snapcraftctl pull
