@@ -99,9 +99,9 @@ parts:
       #cp ../src/data/icons/512x512/stellarium.png $SNAPCRAFT_PART_INSTALL/usr/share/icons/hicolor/512x512/apps
       
     override-prime: |
-      snapcraftctl prime
       set -x
-      $SNAPCRAFT_PART_INSTALL/usr/share/icons/hicolor/64x64/apps/stellarium.png SNAPCRAFT_PRIME/usr/share/icons/hicolor/64x64/apps
+      snapcraftctl prime
+      #$SNAPCRAFT_PART_INSTALL/usr/share/icons/hicolor/64x64/apps/stellarium.png SNAPCRAFT_PRIME/usr/share/icons/hicolor/64x64/apps
       
     build-packages:
       - build-essential
