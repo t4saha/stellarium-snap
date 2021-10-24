@@ -119,7 +119,7 @@ parts:
       - libqt5svg5-dev
       - libqt5opengl5-dev
       - libqt5serialport5-dev
-      - libqt5webengine5-dev
+      - qtwebengine5-dev
       - mesa-common-dev
       - qtbase5-dev
       - qtdeclarative5-dev
