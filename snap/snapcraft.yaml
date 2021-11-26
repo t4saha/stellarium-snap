@@ -30,9 +30,11 @@ apps:
       #DISABLE_WAYLAND: 1
       __EGL_VENDOR_LIBRARY_DIRS: $SNAP/usr/share/glvnd/egl_vendor.d
  
- #layout: 
+ layout: 
     #/share/applications: #not working
       #symlink: $SNAP/usr/share
+    /usr/share/qt5:
+        bind: $SNAP/usr/share/qt5
 
 parts:
   stellarium:
