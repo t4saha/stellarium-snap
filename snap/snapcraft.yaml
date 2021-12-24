@@ -42,7 +42,7 @@ apps:
       - x11
       - opengl
 
-You can download the built snap here: https://transfer.sh/eLtxk/rolisteam_1.9.0_amd64.snap 3
+
  
  layout: 
     #/share/applications: #not working
