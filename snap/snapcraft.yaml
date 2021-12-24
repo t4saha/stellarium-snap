@@ -44,7 +44,7 @@ apps:
 
 
  
- layout: 
+# layout: 
     #/share/applications: #not working
       #symlink: $SNAP/usr/share
     #/usr/share/qt5:
