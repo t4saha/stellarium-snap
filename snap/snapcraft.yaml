@@ -28,13 +28,27 @@ apps:
     environment:
       HOME: "$SNAP_USER_COMMON"
       #DISABLE_WAYLAND: 1
-      __EGL_VENDOR_LIBRARY_DIRS: $SNAP/usr/share/glvnd/egl_vendor.d
+      #__EGL_VENDOR_LIBRARY_DIRS: $SNAP/usr/share/glvnd/egl_vendor.d
+      "QT_PLUGIN_PATH": $"QT_PLUGIN_PATH:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/qt5/plugins/"
+      "QTWEBENGINEPROCESS_PATH": $SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/qt5/libexec
+
+    plugs: 
+      - home
+      - network
+      - pulseaudio
+      - desktop
+      - desktop-legacy
+      - wayland
+      - x11
+      - opengl
+
+You can download the built snap here: https://transfer.sh/eLtxk/rolisteam_1.9.0_amd64.snap 3
  
  layout: 
     #/share/applications: #not working
       #symlink: $SNAP/usr/share
-    /usr/share/qt5:
-        bind: $SNAP/usr/share/qt5
+    #/usr/share/qt5:
+        #bind: $SNAP/usr/share/qt5
 
 parts:
   stellarium:
@@ -146,6 +160,7 @@ parts:
       - libqt5serialport5
       - libqt5webenginewidgets5
       - libqt5webenginecore5
+      - libqt5webengine5
       - libsndfile1
       - libvorbis0a
       - libvorbisenc2
