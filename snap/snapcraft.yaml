@@ -25,12 +25,12 @@ apps:
     common-id: org.stellarium.Stellarium
     plugs: [desktop, wayland, x11, unity7, gsettings, opengl, network, network-bind, audio-playback, home, raw-usb]
     #shared interfaces
-    environment:
-      HOME: "$SNAP_USER_COMMON"
+#    environment:
+#      HOME: "$SNAP_USER_COMMON"
       #DISABLE_WAYLAND: 1
       #__EGL_VENDOR_LIBRARY_DIRS: $SNAP/usr/share/glvnd/egl_vendor.d
-      "QT_PLUGIN_PATH": $"QT_PLUGIN_PATH:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/qt5/plugins/"
-      "QTWEBENGINEPROCESS_PATH": $SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/qt5/libexec
+     # "QT_PLUGIN_PATH": $"QT_PLUGIN_PATH:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/qt5/plugins/"
+      #"QTWEBENGINEPROCESS_PATH": $SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/qt5/libexec
 
     plugs: 
       - home
