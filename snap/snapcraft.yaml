@@ -25,30 +25,14 @@ apps:
     common-id: org.stellarium.Stellarium
     plugs: [desktop, wayland, x11, unity7, gsettings, opengl, network, network-bind, audio-playback, home, raw-usb]
     #shared interfaces
-#    environment:
-#      HOME: "$SNAP_USER_COMMON"
+    environment:
+      HOME: "$SNAP_USER_COMMON"
       #DISABLE_WAYLAND: 1
-      #__EGL_VENDOR_LIBRARY_DIRS: $SNAP/usr/share/glvnd/egl_vendor.d
-     # "QT_PLUGIN_PATH": $"QT_PLUGIN_PATH:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/qt5/plugins/"
-      #"QTWEBENGINEPROCESS_PATH": $SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/qt5/libexec
-
-    plugs: 
-      - home
-      - network
-      - pulseaudio
-      - desktop
-      - desktop-legacy
-      - wayland
-      - x11
-      - opengl
-
-
+      __EGL_VENDOR_LIBRARY_DIRS: $SNAP/usr/share/glvnd/egl_vendor.d
  
-# layout: 
+ #layout: 
     #/share/applications: #not working
       #symlink: $SNAP/usr/share
-    #/usr/share/qt5:
-        #bind: $SNAP/usr/share/qt5
 
 parts:
   stellarium:
@@ -96,9 +80,7 @@ parts:
         #snapcraftctl set-version "$(echo "$(git ls-remote --tags https://github.com/Stellarium/stellarium.git | grep -v {} | awk -F/ '{ print $3 }' | sort -V |tail -n 1)-g$(git ls-remote https://github.com/Stellarium/stellarium.git HEAD | awk '{ print substr($1,1,7)}')")"
         #snapcraftctl set-version "${last_committed_tag}-g$(git ls-remote https://github.com/Stellarium/stellarium.git HEAD | awk '{ print substr($1,1,7)}')"
       fi
-
       snapcraftctl set-version "$(git describe --tag)"
-
     override-build: |
       snapcraftctl build
       set -x
@@ -158,9 +140,6 @@ parts:
       - libqt5printsupport5
       - libqt5script5
       - libqt5serialport5
-      - libqt5webenginewidgets5
-      - libqt5webenginecore5
-      - libqt5webengine5
       - libsndfile1
       - libvorbis0a
       - libvorbisenc2
