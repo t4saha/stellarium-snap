@@ -29,6 +29,8 @@ apps:
       HOME: "$SNAP_USER_COMMON"
       #DISABLE_WAYLAND: 1
       __EGL_VENDOR_LIBRARY_DIRS: $SNAP/usr/share/glvnd/egl_vendor.d
+      "QT_PLUGIN_PATH": $"QT_PLUGIN_PATH:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/qt5/plugins/"
+      "QTWEBENGINEPROCESS_PATH": $"QTWEBENGINEPROCESS_PATH:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/qt5/libexec/"
  
  #layout: 
     #/share/applications: #not working
@@ -144,6 +146,9 @@ parts:
       - libvorbis0a
       - libvorbisenc2
       - libpulse0
+      - libqt5webenginewidgets5
+      - libqt5webenginecore5
+      - libqt5webengine5
    
   # This part installs the qt5 dependencies and a `desktop-launch` script to initialise
   # desktop-specific features such as fonts, themes and the XDG environment.
