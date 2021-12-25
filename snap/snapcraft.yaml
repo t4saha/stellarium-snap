@@ -14,8 +14,8 @@ confinement: strict
 architectures: #build Architectures
    - build-on: amd64 
    #- build-on: i386
-   #- build-on: arm64
-   #- build-on: armhf
+   - build-on: arm64
+   - build-on: armhf
 
 apps:
   stellarium:
@@ -149,6 +149,7 @@ parts:
       - libqt5webenginewidgets5
       - libqt5webenginecore5
       - libqt5webengine5
+      - libqt5webengine-data
    
   # This part installs the qt5 dependencies and a `desktop-launch` script to initialise
   # desktop-specific features such as fonts, themes and the XDG environment.
