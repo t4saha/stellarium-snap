@@ -14,8 +14,8 @@ confinement: strict
 architectures: #build Architectures
    - build-on: amd64 
    #- build-on: i386
-   - build-on: arm64
-   - build-on: armhf
+   #- build-on: arm64
+   #- build-on: armhf
 
 apps:
   stellarium:
@@ -32,9 +32,11 @@ apps:
       "QT_PLUGIN_PATH": $"QT_PLUGIN_PATH:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/qt5/plugins/"
       "QTWEBENGINEPROCESS_PATH": $"QTWEBENGINEPROCESS_PATH:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/qt5/libexec/"
  
- #layout: 
+ layout: 
     #/share/applications: #not working
       #symlink: $SNAP/usr/share
+    /usr/share/qt5:
+        bind: $SNAP/usr/share/qt5
 
 parts:
   stellarium:
