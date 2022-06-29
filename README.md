@@ -1,9 +1,6 @@
 <p align="center">
   <img width=100% src="https://raw.githubusercontent.com/t4saha/stellarium-snap/32c9bc583164148ea9af806b0c0428cf9791e2f7/snap/banner.svg">
 </p>
-
-<p align="center">
-<a href="https://build.snapcraft.io/user/t4saha/stellarium-snap"><img src="https://build.snapcraft.io/badge/t4saha/stellarium-snap.svg" alt="Snap Status"></a></p>
 <p align="center">
 <a href="https://snapcraft.io/stellarium-daily"><img alt="stellarium-daily" src="https://snapcraft.io/stellarium-daily/badge.svg"></a></p>
 <p align="center">
