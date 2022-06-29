@@ -23,18 +23,19 @@ apps:
     command: bin/desktop-launch $SNAP/usr/bin/stellarium
     #desktop: share/applications/stellarium.desktop
     common-id: org.stellarium.Stellarium
-    plugs: [desktop, browser-support, wayland, x11, unity7, gsettings, opengl, network, network-bind, audio-playback, home, raw-usb]
+    plugs: [desktop, desktop-legacy, browser-support, x11, unity7, gsettings, opengl, network, network-bind, audio-playback, home, raw-usb]
     #shared interfaces
     environment:
       HOME: "$SNAP_USER_COMMON"
-      #DISABLE_WAYLAND: 1
-      __EGL_VENDOR_LIBRARY_DIRS: $SNAP/usr/share/glvnd/egl_vendor.d
-      "QT_PLUGIN_PATH": $"QT_PLUGIN_PATH:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/qt5/plugins/"
-      "QTWEBENGINEPROCESS_PATH": $"QTWEBENGINEPROCESS_PATH:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/qt5/libexec/"
+      DISABLE_WAYLAND: 1
+      QT_QPA_PLATFORMTHEME: gtk3
+      #__EGL_VENDOR_LIBRARY_DIRS: $SNAP/usr/share/glvnd/egl_vendor.d
+      #"QT_PLUGIN_PATH": $"QT_PLUGIN_PATH:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/qt5/plugins/"
+      #"QTWEBENGINEPROCESS_PATH": $"QTWEBENGINEPROCESS_PATH:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/qt5/libexec/"
 
-layout:
-  /usr/share/qt5:
-    bind: $SNAP/usr/share/qt5
+#layout:
+  #/usr/share/qt5:
+    #bind: $SNAP/usr/share/qt5
 
 parts:
   stellarium:
@@ -130,6 +131,7 @@ parts:
       - qtmultimedia5-dev
       - qtpositioning5-dev
       - libqt5charts5-dev
+      - libqt5x11extras5-dev
       - zlib1g-dev
     stage-packages:
       - libasyncns0
@@ -152,6 +154,7 @@ parts:
       - libqt5webengine5
       - libqt5webengine-data
       - libqt5charts5
+      - libqt5x11extras5
       - qtwayland5
    
   # This part installs the qt5 dependencies and a `desktop-launch` script to initialise
