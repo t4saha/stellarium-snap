@@ -20,7 +20,7 @@ architectures: #build Architectures
 # this line enables LZO compression for the snap
 compression: lzo
 
-links:
+#links:
   website:
   - https://stellarium.org/
   issues:
