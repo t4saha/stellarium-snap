@@ -21,16 +21,16 @@ architectures: #build Architectures
 compression: lzo
 
 #links:
-  website:
+website:
   - https://stellarium.org/
-  issues:
+issues:
   - https://github.com/t4saha/stellarium-snap/issues
   - https://github.com/Stellarium/stellarium/issues
-  translation:
+translation:
   - https://www.transifex.com/stellarium/stellarium
-  contact:
+contact:
   - https://github.com/t4saha/stellarium-snap
-  help :
+help:
   - https://github.com/Stellarium/stellarium/releases/download/v0.22.2/stellarium_user_guide-0.22.2-1.pdf
 
 apps:
