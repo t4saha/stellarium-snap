@@ -43,9 +43,10 @@ apps:
       "QT_PLUGIN_PATH": $"QT_PLUGIN_PATH:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/qt5/plugins/"
       "QTWEBENGINEPROCESS_PATH": $"QTWEBENGINEPROCESS_PATH:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/qt5/libexec/"
 
-#layout:
-  #/usr/share/qt5:
-    #bind: $SNAP/usr/share/qt5
+#fix for qt webenginee resource not found
+layout:
+  /usr/share/qt5:
+    bind: $SNAP/usr/share/qt5
 
 parts:
   stellarium:
