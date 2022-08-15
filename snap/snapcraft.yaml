@@ -73,7 +73,7 @@ parts:
 
     override-pull: |
       #snapcraftctl pull
-      craftctl pull
+      craftctl default
       set -x
       
       # From Obs-studio
@@ -100,7 +100,7 @@ parts:
       craftctl set-version "$(git describe --tag)"
     override-build: |
       #snapcraftctl build
-      craftctl build
+      craftctl default
       set -x
       #mkdir -p $SNAPCRAFT_PART_INSTALL/usr/share/applications
       #cp ../src/data/stellarium.desktop $SNAPCRAFT_PART_INSTALL/usr/share/applications
