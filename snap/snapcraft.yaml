@@ -204,7 +204,7 @@ parts:
   #  
   
   desktop-stellarium:
-    source: https://github.com/t4saha/snap-desktop-launch-qt6
+    source: https://github.com/t4saha/snap-desktop-launch-qt6.git
     source-subdir: qt
     source-depth : 1
     plugin: make
