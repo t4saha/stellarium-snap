@@ -72,9 +72,7 @@ parts:
       #- $f_exclude
 
     override-pull: |
-      #snapcraftctl pull
       craftctl default
-      set -x
       
       # From Obs-studio
       # Checkout that latest stable version
@@ -98,10 +96,11 @@ parts:
       fi
       #snapcraftctl set-version "$(git describe --tag)"
       craftctl set-version "$(git describe --tag)"
-    override-build: |
+    
+    #override-build: |
       #snapcraftctl build
-      craftctl default
-      set -x
+      #craftctl default
+      #set -x
       #mkdir -p $SNAPCRAFT_PART_INSTALL/usr/share/applications
       #cp ../src/data/stellarium.desktop $SNAPCRAFT_PART_INSTALL/usr/share/applications
       #mkdir -p $SNAPCRAFT_PART_INSTALL/usr/share/icons/hicolor/16x16/apps
@@ -232,7 +231,7 @@ parts:
     #- qtwayland5
     - qt6-wayland
     
-  qt5-gtk-platform:
+  qt6-gtk-platform:
     plugin: nil
     stage-packages:
       - qt6-gtk-platformtheme
