@@ -72,8 +72,6 @@ parts:
       #- $f_exclude
 
     override-pull: |
-      craftctl default
-      
       # From Obs-studio
       # Checkout that latest stable version
       last_committed_tag="$(git -C ../src tag | grep -v stellarium | sort -V | tail -n 1)"
@@ -96,6 +94,7 @@ parts:
       fi
       #snapcraftctl set-version "$(git describe --tag)"
       craftctl set-version "$(git describe --tag)"
+      craftctl default
     
     #override-build: |
       #snapcraftctl build
