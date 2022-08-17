@@ -209,27 +209,27 @@ parts:
     plugin: make
     make-parameters: ["FLAVOR=qt6"]
     build-packages:
-    - build-essential
-    - qt6-base-dev
-    - dpkg-dev
+      - build-essential
+      - qt6-base-dev
+      - dpkg-dev
     stage-packages:
-    - libxkbcommon0
-    - fonts-ubuntu
-    - dmz-cursor-theme
-    - light-themes
-    - adwaita-icon-theme
-    - gnome-themes-standard
-    - shared-mime-info
-    - libqt6gui6
-    - libgdk-pixbuf2.0-0
-    - libqt6svg6 # for loading icon themes which are svg
-    #- try: [appmenu-qt5] # not available on core18
-    - locales-all
-    - xdg-user-dirs
-    #- fcitx-frontend-qt5
-    - libgtk2.0-0
-    #- qtwayland5
-    - qt6-wayland
+      - libxkbcommon0
+      - fonts-ubuntu
+      - dmz-cursor-theme
+      - light-themes
+      - adwaita-icon-theme
+      - gnome-themes-standard
+      - shared-mime-info
+      - libqt6gui6
+      - libgdk-pixbuf2.0-0
+      - libqt6svg6 # for loading icon themes which are svg
+      #- try: [appmenu-qt5] # not available on core18
+      - locales-all
+      - xdg-user-dirs
+      #- fcitx-frontend-qt5
+      - libgtk2.0-0
+      #- qtwayland5
+      - qt6-wayland
     
   qt6-gtk-platform:
     plugin: nil
