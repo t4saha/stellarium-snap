@@ -52,7 +52,7 @@ parts:
     after: [desktop-stellarium]
 
     override-pull: |
-      craftctl default
+      snapcraftctl pull
       last_committed_tag="$(git -C ../src tag | grep -v stellarium | sort -V | tail -n 1)"
       last_released_tag="$(snap info stellarium-daily | awk '$1 == "latest/beta:" { print $2 }')"
       
@@ -63,7 +63,7 @@ parts:
         cd ../src
         git checkout "${last_committed_tag}"
       fi
-      craftctl set-version "$(git describe --tag)"
+      snapcraftctl set-version "$(git describe --tag)"
 
     - build-essential
       - doxygen
