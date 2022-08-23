@@ -52,19 +52,21 @@ parts:
     after: [desktop-stellarium]
 
     override-pull: |
-      set -ex
-      craftctl default
-      last_committed_tag = $(git -C ../src tag | grep -v stellarium | sort -V | tail -n 1)
-      last_released_tag = $(snap info stellarium-daily | awk '$1 == "latest/beta:" { print $2 }')
+      snapcraftctl pull
+      set -x
+      
+      # Checkout that latest stable version
+      last_committed_tag="$(git -C ../src tag | grep -v stellarium | sort -V | tail -n 1)"
+      last_released_tag="$(snap info stellarium-daily | awk '$1 == "latest/beta:" { print $2 }')"
       
       # If the latest tag from the upstream project has not been released to
       # beta, build that tag instead of master.
-      if [ ${last_committed_tag} != ${last_released_tag} ]; then
+      if [ "${last_committed_tag}" != "${last_released_tag}" ]; then
         git fetch
         cd ../src
-        git checkout ${last_committed_tag}
+        git checkout "${last_committed_tag}"
       fi
-      craftctl set version = $(git describe --tag)
+      snapcraftctl set-version "$(git describe --tag)"
       
     build-packages:
       - build-essential
