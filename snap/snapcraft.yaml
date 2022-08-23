@@ -52,7 +52,7 @@ parts:
     after: [desktop-stellarium]
 
     override-pull: |
-      snapcraftctl pull
+      craftctl default
       last_committed_tag="$(git -C ../src tag | grep -v stellarium | sort -V | tail -n 1)"
       last_released_tag="$(snap info stellarium-daily | awk '$1 == "latest/beta:" { print $2 }')"
       
@@ -63,9 +63,10 @@ parts:
         cd ../src
         git checkout "${last_committed_tag}"
       fi
-      snapcraftctl set-version "$(git describe --tag)"
-
-    - build-essential
+      craftctl set-version "$(git describe --tag)"
+      
+    build-packages:
+      - build-essential
       - doxygen
       - gettext
       - libqt5multimedia5-plugins
@@ -143,6 +144,8 @@ parts:
     - fcitx-frontend-qt5
     - libgtk2.0-0
     - qtwayland5
+    - on amd64:
+      - appmenu-qt5 # not available on core18
     
   qt5-gtk-platform:
     plugin: nil
