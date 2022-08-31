@@ -58,8 +58,12 @@ parts:
         cd ../src
         git clone -b "${last_committed_tag}" --depth 1 https://github.com/Stellarium/stellarium.git .
       fi
-      #version = "$(git describe --tag)"
-      #craftctl set version="$(git describe --tag)"
+      prefix="v0."
+      v1="v1."
+      version="$(git describe --tags)"
+      version="${version#"$prefix"}"
+      version="${v1}${version}"
+      craftctl set version="$version"
     
       
     build-packages:
