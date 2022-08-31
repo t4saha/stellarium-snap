@@ -1,4 +1,5 @@
 name: stellarium-daily # you probably want to 'snapcraft register <name>'
+
 base: core22
 adopt-info: stellarium
 grade: stable # must be 'stable' to release into candidate/stable channels
@@ -28,132 +29,123 @@ apps:
       HOME: "$SNAP_USER_COMMON"
       DISABLE_WAYLAND: 1
       QT_QPA_PLATFORMTHEME: gtk3
-      #__EGL_VENDOR_LIBRARY_DIRS: $SNAP/usr/share/glvnd/egl_vendor.d
-      #"QT_PLUGIN_PATH": $"QT_PLUGIN_PATH:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/qt5/plugins/"
-      #"QTWEBENGINEPROCESS_PATH": $"QTWEBENGINEPROCESS_PATH:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/qt5/libexec/"
 
-#fix for qt webenginee resource not found
 layout:
-  /usr/share/qt5:
-    bind: $SNAP/usr/share/qt5
+  /usr/share/qt6:
+    bind: $SNAP/usr/share/qt6
 
 parts:
   stellarium:
     plugin: cmake
-    #configflags:
     cmake-parameters:
       - -DCMAKE_BUILD_TYPE=Release
       - -DCMAKE_INSTALL_PREFIX:PATH=/usr
     source: https://github.com/Stellarium/stellarium.git
     source-type: git
-    #source-depth : 1
-    #source-tag: v0.20.1
     parse-info: [usr/share/metainfo/org.stellarium.Stellarium.appdata.xml] #appstream info
     after: [desktop-stellarium]
 
     override-pull: |
-      snapcraftctl pull
-      set -x
-      
       # Checkout that latest stable version
-      last_committed_tag="$(git -C ../src tag | grep -v stellarium | sort -V | tail -n 1)"
+      craftctl default
+      set -x
+      last_committed_tag="$(git ls-remote --tags https://github.com/Stellarium/stellarium.git | grep -v {} | awk -F/ '{ print $3 }' | sort -V |tail -n 1)"
       last_released_tag="$(snap info stellarium-daily | awk '$1 == "latest/beta:" { print $2 }')"
       
       # If the latest tag from the upstream project has not been released to
       # beta, build that tag instead of master.
       if [ "${last_committed_tag}" != "${last_released_tag}" ]; then
-        git fetch
         cd ../src
-        git checkout "${last_committed_tag}"
+        git clone -b "${last_committed_tag}" --depth 1 https://github.com/Stellarium/stellarium.git .
       fi
-      snapcraftctl set-version "$(git describe --tag)"
+      version = "$(git describe --tag)"
+      craftctl set version = "${version}"
+    
       
     build-packages:
       - build-essential
       - doxygen
+      - libgl1-mesa-dev
+      - libdrm-dev
+      - graphviz
       - gettext
-      - libqt5multimedia5-plugins
-      - libqt5positioning5
-      - libqt5positioning5-plugins
-      - libqt5svg5-dev
-      - libqt5opengl5-dev
-      - libqt5serialport5-dev
-      - qtwebengine5-dev
+      - libqt6positioning6-plugins
+      - libqt6svg6-dev
+      - libqt6opengl6-dev
+      - libqt6serialport6-dev
+      - qt6-webengine-dev
       - mesa-common-dev
-      - qtbase5-dev
-      - qtdeclarative5-dev
-      - qtdeclarative5-dev-tools
-      - qtscript5-dev
-      - qttools5-dev
-      - qttools5-dev-tools
-      - qtmultimedia5-dev
-      - qtpositioning5-dev
-      - libqt5charts5-dev
+      - qt6-base-dev
+      - qt6-declarative-dev
+      - qt6-declarative-dev-tools
+      - qt6-tools-dev
+      - qt6-tools-dev-tools
+      - qt6-multimedia-dev
+      - qt6-positioning-dev
+      - libqt6charts6-dev
       - zlib1g-dev
+      - libgps-dev
+      # only Qt6
+      - qt6-l10n-tools
+      - linguist-qt6
+      - libqt6webchannel6-dev
+      - libqt6webenginewidgets6
+      - qt6-webengine-dev-tools
+      - libqt6webengine6-data
+      - libqt6webenginecore6-bin
+      - qt6-positioning-dev
     stage-packages:
       - libasyncns0
       - libflac8
       - gtk3-nocsd
       - libogg0
-      - libqt5multimedia5
-      - libqt5multimediawidgets5
-      - libqt5opengl5
-      - libqt5positioning5
-      - libqt5printsupport5
-      - libqt5script5
-      - libqt5serialport5
+      - libqt6multimedia6
+      - libqt6multimediawidgets6
+      - libqt6opengl6
+      - libqt6positioning6
+      - libqt6printsupport6
+      - libqt6serialport6
       - libsndfile1
       - libvorbis0a
       - libvorbisenc2
       - libpulse0
-      - libqt5webenginewidgets5
-      - libqt5webenginecore5
-      - libqt5webengine5
-      - libqt5webengine-data
-      - libqt5charts5
-      - qtwayland5
+      - libqt6webenginewidgets6
+      - libqt6webenginecore6
+      - libqt6webengine6-data
+      - libqt6charts6
+      - qt6-wayland
    
-  # This part installs the qt5 dependencies and a `desktop-launch` script to initialise
-  # desktop-specific features such as fonts, themes and the XDG environment.
-  # 
-  # It is copied straight from the snapcraft desktop helpers project. Please periodically
-  # check the source for updates and copy the changes.
-  # https://github.com/ubuntu/snapcraft-desktop-helpers/blob/master/snapcraft.yaml
-  #  
   
   desktop-stellarium:
-    source: https://github.com/ubuntu/snapcraft-desktop-helpers.git
+    source: https://github.com/t4saha/snap-desktop-launch-qt6.git
     source-subdir: qt
     source-depth : 1
     plugin: make
-    make-parameters: ["FLAVOR=qt5"]
+    #make-parameters: ["FLAVOR=qt6"]
     build-packages:
-    - build-essential
-    - qtbase5-dev
-    - dpkg-dev
+      - build-essential
+      - qt6-base-dev
+      - dpkg-dev
     stage-packages:
-    - libxkbcommon0
-    - fonts-ubuntu
-    - dmz-cursor-theme
-    - light-themes
-    - adwaita-icon-theme
-    - gnome-themes-standard
-    - shared-mime-info
-    - libqt5gui5
-    - libgdk-pixbuf2.0-0
-    - libqt5svg5 # for loading icon themes which are svg
-    - locales-all
-    - xdg-user-dirs
-    - fcitx-frontend-qt5
-    - libgtk2.0-0
-    - qtwayland5
-    #- on amd64:
-      #- appmenu-qt5 # not available on core22
+      - libxkbcommon0
+      - fonts-ubuntu
+      - dmz-cursor-theme
+      - light-themes
+      - adwaita-icon-theme
+      - gnome-themes-standard
+      - shared-mime-info
+      - libqt6gui6
+      - libgdk-pixbuf2.0-0
+      - libqt6svg6 # for loading icon themes which are svg
+      - locales-all
+      - xdg-user-dirs
+      - libgtk2.0-0
+      - qt6-wayland
     
-  qt5-gtk-platform:
+  qt6-gtk-platform:
     plugin: nil
     stage-packages:
-      - qt5-gtk-platformtheme
+      - qt6-gtk-platformtheme
 
 plugs:
   # Support for common GTK themes
