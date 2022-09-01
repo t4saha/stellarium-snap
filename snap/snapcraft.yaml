@@ -64,6 +64,10 @@ parts:
       version="${version#"$prefix"}"
       version="${v1}${version}"
       craftctl set version="$version"
+      
+    override-build: |
+      craftctl default
+      find / ! -readable -prune -o -type f -name "libQt6WebEngineCore.so.*" -exec ls {} \; -exec execstack --clear-execstack {} \; || true
     
       
     build-packages:
