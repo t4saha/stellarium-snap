@@ -102,6 +102,8 @@ parts:
       - libqt6webengine6-data
       - libqt6webenginecore6-bin
       - qt6-positioning-dev
+      # for execstack flag removal
+       - execstack
     stage-packages:
       - libasyncns0
       - libflac8
