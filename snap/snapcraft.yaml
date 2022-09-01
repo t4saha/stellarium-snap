@@ -103,7 +103,7 @@ parts:
       - libqt6webenginecore6-bin
       - qt6-positioning-dev
       # for execstack flag removal
-       - execstack
+      - execstack
     stage-packages:
       - libasyncns0
       - libflac8
