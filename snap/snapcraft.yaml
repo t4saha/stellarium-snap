@@ -151,6 +151,7 @@ parts:
       - locales-all
       - xdg-user-dirs
       - libgtk2.0-0
+      - qt6-qpa-plugins
       - qt6-wayland
     
   qt6-gtk-platform:
