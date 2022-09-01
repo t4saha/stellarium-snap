@@ -106,6 +106,7 @@ parts:
       - execstack
     stage-packages:
       - libasyncns0
+      - libgps28
       - libflac8
       - gtk3-nocsd
       - libogg0
