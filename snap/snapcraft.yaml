@@ -125,6 +125,7 @@ parts:
       - libqt6webengine6-data
       - libqt6charts6
       - qt6-wayland
+      - libqt6webenginecore6-bin
    
   
   desktop-stellarium:
