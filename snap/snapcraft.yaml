@@ -58,8 +58,16 @@ parts:
         cd ../src
         git clone -b "${last_committed_tag}" --depth 1 https://github.com/Stellarium/stellarium.git .
       fi
-      version = "$(git describe --tag)"
-      craftctl set version = "${version}"
+      prefix="v0."
+      v1="v1."
+      version="$(git describe --tags)"
+      version="${version#"$prefix"}"
+      version="${v1}${version}"
+      craftctl set version="$version"
+      
+    override-build: |
+      craftctl default
+      find / ! -readable -prune -o -type f -name "libQt6WebEngineCore.so.*" -exec ls {} \; -exec execstack --clear-execstack {} \; || true
     
       
     build-packages:
@@ -94,8 +102,11 @@ parts:
       - libqt6webengine6-data
       - libqt6webenginecore6-bin
       - qt6-positioning-dev
+      # for execstack flag removal
+      - execstack
     stage-packages:
       - libasyncns0
+      - libgps28
       - libflac8
       - gtk3-nocsd
       - libogg0
@@ -114,6 +125,7 @@ parts:
       - libqt6webengine6-data
       - libqt6charts6
       - qt6-wayland
+      - libqt6webenginecore6-bin
    
   
   desktop-stellarium:
@@ -140,6 +152,7 @@ parts:
       - locales-all
       - xdg-user-dirs
       - libgtk2.0-0
+      - qt6-qpa-plugins
       - qt6-wayland
     
   qt6-gtk-platform:
