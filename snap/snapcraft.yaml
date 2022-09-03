@@ -136,6 +136,14 @@ parts:
     source-depth : 1
     plugin: make
     #make-parameters: ["FLAVOR=qt6"]
+
+    override-build: |
+      # Checkout that latest stable version
+      craftctl default
+      set -x
+      wget http://mirrors.kernel.org/ubuntu/pool/universe/f/fcitx-qt5/fcitx-frontend-qt6_1.2.7-2build2_amd64.deb
+      dpkg -i fcitx-frontend-qt6_1.2.7-2build2*.deb
+
     build-packages:
       - build-essential
       - qt6-base-dev
@@ -156,7 +164,7 @@ parts:
       - libgtk2.0-0
       - qt6-qpa-plugins
       - qt6-wayland
-      - fcitx-frontend-qt6
+      #- fcitx-frontend-qt6
     
   qt6-gtk-platform:
     plugin: nil
