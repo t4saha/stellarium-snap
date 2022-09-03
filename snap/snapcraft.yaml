@@ -154,6 +154,7 @@ parts:
       - libgtk2.0-0
       - qt6-qpa-plugins
       - qt6-wayland
+      - fcitx-frontend-qt6
     
   qt6-gtk-platform:
     plugin: nil
