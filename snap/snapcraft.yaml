@@ -40,7 +40,7 @@ parts:
     cmake-parameters:
       - -DCMAKE_BUILD_TYPE=Release
       - -DCMAKE_INSTALL_PREFIX:PATH=/usr
-      - -DCMAKE_PREFIX_PATH=$CRAFT_PART_INSTALL/usr/local/lib/ShowMySky/cmake
+      - -DCMAKE_PREFIX_PATH=$CRAFT_STAGE/usr/local/lib/ShowMySky/cmake
     source: https://github.com/Stellarium/stellarium.git
     source-type: git
     parse-info: [usr/share/metainfo/org.stellarium.Stellarium.appdata.xml] #appstream info
