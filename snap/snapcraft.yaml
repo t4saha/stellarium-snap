@@ -42,11 +42,10 @@ parts:
     cmake-parameters:
       - -DCMAKE_BUILD_TYPE=Release
       - -DCMAKE_INSTALL_PREFIX:PATH=/usr
-      - -DCMAKE_PREFIX_PATH=../CalcMySky_install/CalcMySky/lib/ShowMySky
     source: https://github.com/Stellarium/stellarium.git
     source-type: git
     parse-info: [usr/share/metainfo/org.stellarium.Stellarium.appdata.xml] #appstream info
-    after: [desktop-stellarium]
+    after: [desktop-stellarium, ShowMySky]
 
     override-pull: |
       # Checkout that latest stable version
@@ -129,7 +128,20 @@ parts:
       - libqt6charts6
       - qt6-wayland
       - libqt6webenginecore6-bin
-   
+
+  ShowMySky:
+    source: https://github.com/10110111/CalcMySky.git   
+    source-depth : 1
+    plugin: make
+    make-parameters:
+      - -DQT_VERSION=6
+
+    build-packages:
+      - build-essential
+      - libeigen3-dev
+      - libglm-dev
+      - libqt6opengl6-dev
+
   
   desktop-stellarium:
     source: https://github.com/t4saha/snap-desktop-launch-qt6.git
