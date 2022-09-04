@@ -95,6 +95,9 @@ parts:
       - libqt6charts6-dev
       - zlib1g-dev
       - libgps-dev
+      - libxcb-xkb-dev
+      - libxkbcommon-dev
+      - libxkbcommon-x11-dev
       # only Qt6
       - qt6-l10n-tools
       - linguist-qt6
@@ -141,6 +144,9 @@ parts:
       - libeigen3-dev
       - libglm-dev
       - libqt6opengl6-dev
+      - libxcb-xkb-dev
+      - libxkbcommon-dev
+      - libxkbcommon-x11-dev
 
   
   desktop-stellarium:
