@@ -132,8 +132,8 @@ parts:
   ShowMySky:
     source: https://github.com/10110111/CalcMySky.git   
     source-depth : 1
-    plugin: make
-    make-parameters:
+    plugin: cmake
+    cmake-parameters:
       - -DQT_VERSION=6
 
     build-packages:
