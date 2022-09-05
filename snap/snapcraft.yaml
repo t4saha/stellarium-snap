@@ -42,7 +42,10 @@ parts:
     cmake-parameters:
       - -DCMAKE_BUILD_TYPE=Release
       - -DCMAKE_INSTALL_PREFIX:PATH=/usr
-      - -DCMAKE_PREFIX_PATH=$CRAFT_STAGE/usr/local/lib/ShowMySky/cmake
+      - on amd64:
+        - -DCMAKE_PREFIX_PATH=$CRAFT_STAGE/usr/local/lib/ShowMySky/cmake
+      - on arm64:
+        - DENABLE_ShowMySky=false
     source: https://github.com/Stellarium/stellarium.git
     source-type: git
     parse-info: [usr/share/metainfo/org.stellarium.Stellarium.appdata.xml] #appstream info
@@ -134,20 +137,22 @@ parts:
       - libqt6webenginecore6-bin
 
   ShowMySky:
-    source: https://github.com/10110111/CalcMySky.git   
+    source: 
+      - to amd64: https://github.com/10110111/CalcMySky.git   
     source-depth : 1
     plugin: cmake
     cmake-parameters:
       - -DQT_VERSION=6
 
     build-packages:
-      - build-essential
-      - libeigen3-dev
-      - libglm-dev
-      - libqt6opengl6-dev
-      - libxcb-xkb-dev
-      - libxkbcommon-dev
-      - libxkbcommon-x11-dev
+      - on amd64:
+        - build-essential
+        - libeigen3-dev
+        - libglm-dev
+        - libqt6opengl6-dev
+        - libxcb-xkb-dev
+        - libxkbcommon-dev
+        - libxkbcommon-x11-dev
 
   
   desktop-stellarium:
