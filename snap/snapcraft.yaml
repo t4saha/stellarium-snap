@@ -6,7 +6,7 @@ grade: stable # must be 'stable' to release into candidate/stable channels
 confinement: strict
 
 architectures: #build Architectures
-   - build-on: amd64 
+   #- build-on: amd64 
    - build-on: arm64
    
 # this line enables LZO compression for the snap
@@ -70,7 +70,8 @@ parts:
       
     override-build: |
       if [ "$(arch)" = "aarch64" ]; then
-        cd stellarium
+        dir
+        cd ../src/stellarium
         mkdir -p build
         cd build
         cmake .. -DENABLE_ShowMySky=false -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr
