@@ -169,7 +169,6 @@ parts:
         - libxcb-xkb-dev
         - libxkbcommon-dev
         - libxkbcommon-x11-dev
-
   
   desktop-stellarium:
     source: https://github.com/t4saha/snap-desktop-launch-qt6.git
