@@ -74,7 +74,7 @@ parts:
       if [ "$(arch)" = "arm64" ]; then
         cmake \
         -DENABLE_ShowMySky=false
-      elif [ "$(arch)" = "amd64" ]; then
+      elif [ "$(arch)" = "x86_64" ]; then
         cmake \
         -DCMAKE_PREFIX_PATH=$CRAFT_STAGE/usr/local/lib/ShowMySky/cmake
       fi
@@ -144,13 +144,13 @@ parts:
 
     override-pull: |
       craftctl default
-      if [ "$(arch)" = "amd64" ]; then
+      if [ "$(arch)" = "x86_64" ]; then
         git clone --depth 1 https://github.com/10110111/CalcMySky.git
       fi
 
     override-build: |
       craftctl default
-      if [ "$(arch)" = "amd64" ]; then
+      if [ "$(arch)" = "x86_64" ]; then
         cd CalcMySky
         mkdir build
         cd build
