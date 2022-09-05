@@ -42,7 +42,7 @@ parts:
     cmake-parameters:
       - -DCMAKE_BUILD_TYPE=Release
       - -DCMAKE_INSTALL_PREFIX:PATH=/usr
-      - -DCMAKE_PREFIX_PATH=$CRAFT_STAGE/usr/local/lib/ShowMySky/cmake
+
     source: https://github.com/Stellarium/stellarium.git
     source-type: git
     parse-info: [usr/share/metainfo/org.stellarium.Stellarium.appdata.xml] #appstream info
@@ -71,8 +71,14 @@ parts:
     override-build: |
       craftctl default
       find / ! -readable -prune -o -type f -name "libQt6WebEngineCore.so.*" -exec ls {} \; -exec execstack --clear-execstack {} \; || true
-    
-      
+      if [ "$(arch)" = "arm64" ]; then
+        cmake \
+        -DENABLE_ShowMySky=false
+      elif [ "$(arch)" = "amd64" ]; then
+        cmake \
+        -DCMAKE_PREFIX_PATH=$CRAFT_STAGE/usr/local/lib/ShowMySky/cmake
+      fi
+
     build-packages:
       - build-essential
       - doxygen
@@ -133,22 +139,36 @@ parts:
       - qt6-wayland
       - libqt6webenginecore6-bin
 
-  ShowMySky:
-    source: https://github.com/10110111/CalcMySky.git   
-    source-depth : 1
-    plugin: cmake
-    cmake-parameters:
-      - -DQT_VERSION=6
+  ShowMySky:  
+    plugin: nil
+
+    override-pull: |
+      craftctl default
+      if [ "$(arch)" = "amd64" ]; then
+        git clone --depth 1 https://github.com/10110111/CalcMySky.git
+      fi
+
+    override-build: |
+      craftctl default
+      if [ "$(arch)" = "amd64" ]; then
+        cd CalcMySky
+        mkdir build
+        cd build
+        cmake .. -DQT_VERSION=6
+        make
+        make install
+      fi
 
     build-packages:
-      - build-essential
-      - libeigen3-dev
-      - libglm-dev
-      - libqt6opengl6-dev
-      - libxcb-xkb-dev
-      - libxkbcommon-dev
-      - libxkbcommon-x11-dev
-
+      - git
+      - on amd64:
+        - build-essential
+        - libeigen3-dev
+        - libglm-dev
+        - libqt6opengl6-dev
+        - libxcb-xkb-dev
+        - libxkbcommon-dev
+        - libxkbcommon-x11-dev
   
   desktop-stellarium:
     source: https://github.com/t4saha/snap-desktop-launch-qt6.git
