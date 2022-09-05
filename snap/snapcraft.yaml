@@ -42,6 +42,8 @@ parts:
     cmake-parameters:
       - -DCMAKE_BUILD_TYPE=Release
       - -DCMAKE_INSTALL_PREFIX:PATH=/usr
+      - on arm64:
+        - -DENABLE_ShowMySky=false
 
     source: https://github.com/Stellarium/stellarium.git
     source-type: git
@@ -69,13 +71,10 @@ parts:
       craftctl set version="$version"
       
     override-build: |
-      if [ "$(arch)" = "arm64" ]; then
-        cmake \
-        -DENABLE_ShowMySky=false
-      elif [ "$(arch)" = "x86_64" ]; then
-        cmake \
-        -DCMAKE_PREFIX_PATH=$CRAFT_STAGE/usr/local/lib/ShowMySky/cmake
-      fi
+      #if [ "$(arch)" = "arm64" ]; then
+       # cmake \
+       # -DENABLE_ShowMySky=false
+     # fi
       craftctl default
       find / ! -readable -prune -o -type f -name "libQt6WebEngineCore.so.*" -exec ls {} \; -exec execstack --clear-execstack {} \; || true
 
