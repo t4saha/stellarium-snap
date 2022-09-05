@@ -33,6 +33,8 @@ apps:
 layout:
   /usr/share/qt6:
     bind: $SNAP/usr/share/qt6
+  /usr/share/X11/xkb:
+    bind: $SNAP/usr/share/X11/xkb
 
 parts:
   stellarium:
@@ -162,6 +164,7 @@ parts:
       - software-properties-common
     stage-packages:
       - libxkbcommon0
+      - xkb-data
       - fonts-ubuntu
       - dmz-cursor-theme
       - light-themes
