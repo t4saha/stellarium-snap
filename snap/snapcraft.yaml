@@ -70,7 +70,7 @@ parts:
       
     override-build: |
       if [ "$(arch)" = "aarch64" ]; then
-        cmake $CRAFT_PART_SRC -DENABLE_ShowMySky=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr
+        cmake $CRAFT_PART_SRC -DENABLE_SHOWMYSKY=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr
         make
         make install
       else
