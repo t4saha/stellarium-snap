@@ -74,7 +74,7 @@ parts:
         #cd ../src/stellarium
         mkdir -p build
         cd build
-        cmake .. -DENABLE_ShowMySky=false -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr
+        cmake ../.. -DENABLE_ShowMySky=false -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr
         make
         make install
       else
