@@ -177,11 +177,6 @@ parts:
     plugin: make
     #make-parameters: ["FLAVOR=qt6"]
 
-    override-prime: |
-      snapcraftctl prime
-      sed -i 's|XDG_DATA_HOME=$SNAP_USER_DATA|XDG_DATA_HOME=$SNAP_USER_COMMON|' $SNAPCRAFT_PRIME/bin/desktop-launch
-      sed -i 's|XDG_CONFIG_HOME=$SNAP_USER_DATA|XDG_CONFIG_HOME=$SNAP_USER_COMMON|' $SNAPCRAFT_PRIME/bin/desktop-launch
-
     build-packages:
       - build-essential
       - qt6-base-dev
@@ -207,30 +202,9 @@ parts:
       - qt6-wayland
       - qt6-gtk-platformtheme
       - libgtk-3-common
+      - gsettings-desktop-schemas
       #- fcitx-frontend-qt6
 
-  desktop-settings-packages:
-    plugin: nil
-
-    build-packages:
-      - libglib2.0-bin
-
-    stage-packages:
-      - gsettings-desktop-schemas
-      - ubuntu-settings
-
-    prime:
-      - usr/share/glib-2.0/schemas/*
-    after: [desktop-stellarium]
-
-  desktop-settings-build:
-    plugin: nil
-    after: [desktop-settings-packages]
-
-    override-prime: |
-      set -eux
-      glib-compile-schemas usr/share/glib-2.0/schemas
-    
 plugs:
   # Support for common GTK themes
   # https://forum.snapcraft.io/t/how-to-use-the-system-gtk-theme-via-the-gtk-common-themes-snap/6235
