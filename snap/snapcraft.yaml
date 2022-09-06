@@ -6,7 +6,7 @@ grade: stable # must be 'stable' to release into candidate/stable channels
 confinement: strict
 
 architectures: #build Architectures
-   #- build-on: amd64 
+   - build-on: amd64 
    - build-on: arm64
    
 # this line enables LZO compression for the snap
