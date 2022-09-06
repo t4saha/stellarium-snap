@@ -70,11 +70,7 @@ parts:
       
     override-build: |
       if [ "$(arch)" = "aarch64" ]; then
-        dir
-        #cd ../src/stellarium
-        mkdir -p build
-        cd build
-        cmake ../.. -DENABLE_ShowMySky=false -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr
+        cmake $CRAFT_PART_SRC -DENABLE_ShowMySky=false -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr
         make
         make install
       else
