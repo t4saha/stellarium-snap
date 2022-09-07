@@ -1,6 +1,7 @@
 name: stellarium-daily # you probably want to 'snapcraft register <name>'
 
 base: core22
+summary: Free, open source planetarium software
 adopt-info: stellarium
 grade: stable # must be 'stable' to release into candidate/stable channels
 confinement: strict
@@ -35,6 +36,8 @@ layout:
     bind: $SNAP/usr/share/qt6
   /usr/share/X11/xkb:
     bind: $SNAP/usr/share/X11/xkb
+  /usr/share/glib-2.0/schemas
+    bind: $SNAP/usr/share/glib-2.0/schemas
 
 parts:
   stellarium:
