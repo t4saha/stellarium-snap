@@ -174,11 +174,11 @@ parts:
         - libxkbcommon-x11-dev
   
   desktop-stellarium:
-    source: https://github.com/t4saha/snap-desktop-launch-qt6.git
+    source: https://github.com/t4saha/snapcraft-desktop-helpers-Qt6
     source-subdir: qt
     source-depth : 1
     plugin: make
-    #make-parameters: ["FLAVOR=qt6"]
+    make-parameters: ["FLAVOR=qt6"]
 
     build-packages:
       - build-essential
@@ -205,7 +205,6 @@ parts:
       - qt6-wayland
       - qt6-gtk-platformtheme
       - libgtk-3-common
-      - gsettings-desktop-schemas
       #- fcitx-frontend-qt6
 
 plugs:
