@@ -175,7 +175,7 @@ parts:
         - libxkbcommon-x11-dev
   
   desktop-stellarium:
-    source: https://github.com/t4saha/snapcraft-desktop-helpers-Qt6
+    source: https://github.com/t4saha/snapcraft-desktop-helpers-Qt6.git
     source-subdir: qt
     source-depth : 1
     plugin: make
