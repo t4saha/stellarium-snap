@@ -2,6 +2,9 @@ name: stellarium-daily # you probably want to 'snapcraft register <name>'
 
 base: core22
 summary: Free, open source planetarium software
+description: |
+  Stellarium renders 3D photo-realistic skies in real-time. With Stellarium, you
+  really see what you can see with your eyes, binoculars or a small telescope.
 adopt-info: stellarium
 grade: stable # must be 'stable' to release into candidate/stable channels
 confinement: strict
@@ -34,10 +37,8 @@ apps:
 layout:
   /usr/share/qt6:
     bind: $SNAP/usr/share/qt6
-  /usr/share/X11/xkb:
-    bind: $SNAP/usr/share/X11/xkb
-  /usr/share/glib-2.0/schemas:
-    bind: $SNAP/usr/share/glib-2.0/schemas
+  /usr/share/X11:
+    bind: $SNAP/usr/share/X11
 
 parts:
   stellarium:
