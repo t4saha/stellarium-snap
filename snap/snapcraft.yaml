@@ -32,7 +32,7 @@ apps:
     environment:
       HOME: "$SNAP_USER_COMMON"
       DISABLE_WAYLAND: 1
-      QT_QPA_PLATFORMTHEME: gtk3
+      QT_QPA_PLATFORMTHEME: xcb
 
 layout:
   /usr/share/qt6:
@@ -173,6 +173,7 @@ parts:
         - libxcb-xkb-dev
         - libxkbcommon-dev
         - libxkbcommon-x11-dev
+    prime: [-./*]
   
   desktop-stellarium:
     source: https://github.com/t4saha/snapcraft-desktop-helpers-Qt6.git
