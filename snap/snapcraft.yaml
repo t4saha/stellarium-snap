@@ -158,7 +158,7 @@ parts:
         cd CalcMySky
         mkdir build
         cd build
-        cmake .. -DQT_VERSION=6
+        cmake .. -DQT_VERSION=6 -DCMAKE_INSTALL_PREFIX:PATH=/usr
         make
         make install
       fi
@@ -173,7 +173,8 @@ parts:
         - libxcb-xkb-dev
         - libxkbcommon-dev
         - libxkbcommon-x11-dev
-    prime: [-./*]
+
+    prime: [- ./*]
   
   desktop-stellarium:
     source: https://github.com/t4saha/snapcraft-desktop-helpers-Qt6.git
