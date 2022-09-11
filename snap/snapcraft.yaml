@@ -31,8 +31,8 @@ apps:
     #shared interfaces
     environment:
       HOME: "$SNAP_USER_COMMON"
-      #DISABLE_WAYLAND: 1
-      QT_QPA_PLATFORMTHEME: gtk3  #xcb
+      DISABLE_WAYLAND: 1 # wayland is broken
+      QT_QPA_PLATFORMTHEME: xcb # gtk3 is very slow and buggy
 
 layout:
   /usr/share/qt6:
@@ -145,7 +145,11 @@ parts:
       - libqt6webenginecore6-bin
 
   ShowMySky:  
-    plugin: nil
+    plugin: make
+    source: https://github.com/10110111/CalcMySky.git
+    source-type: git
+    source-depth : 1
+    source-tag: v0.0.5
 
     override-pull: |
       craftctl default
