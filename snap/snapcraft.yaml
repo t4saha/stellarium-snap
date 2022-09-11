@@ -74,7 +74,7 @@ parts:
       
     override-build: |
       if [ "$(arch)" = "aarch64" ]; then
-        cmake $CRAFT_PART_SRC -DENABLE_SHOWMYSKY=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr
+        cmake $CRAFT_PART_SRC -DENABLE_SHOWMYSKY=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$CRAFT_PART_INSTALL/usr
         make
         make install
       else
@@ -145,12 +145,8 @@ parts:
       - libqt6webenginecore6-bin
 
   ShowMySky:  
-    plugin: make
-    source: https://github.com/10110111/CalcMySky.git
-    source-type: git
-    source-depth : 1
-    source-tag: v0.0.5
-
+    plugin: nil
+    
     override-pull: |
       #craftctl default
       if [ "$(arch)" = "x86_64" ]; then
@@ -163,7 +159,7 @@ parts:
         cd CalcMySky
         mkdir build
         cd build
-        cmake -DCMAKE_INSTALL_PREFIX=/usr .. -DQT_VERSION=6 
+        cmake -DCMAKE_INSTALL_PREFIX=$CRAFT_PART_INSTALL/usr .. -DQT_VERSION=6 
         make
         make install
       fi
@@ -178,8 +174,6 @@ parts:
         - libxcb-xkb-dev
         - libxkbcommon-dev
         - libxkbcommon-x11-dev
-
-    prime: [-$CRAFT_PART_INSTALL/*]
   
   desktop-stellarium:
     source: https://github.com/t4saha/snapcraft-desktop-helpers-Qt6.git
