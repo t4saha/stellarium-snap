@@ -152,13 +152,13 @@ parts:
     source-tag: v0.0.5
 
     override-pull: |
-      craftctl default
+      #craftctl default
       if [ "$(arch)" = "x86_64" ]; then
         git clone --depth 1 https://github.com/10110111/CalcMySky.git
       fi
 
     override-build: |
-      craftctl default
+      #craftctl default
       if [ "$(arch)" = "x86_64" ]; then
         cd CalcMySky
         mkdir build
