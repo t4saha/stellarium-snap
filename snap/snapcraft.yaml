@@ -211,14 +211,14 @@ parts:
       - libglib2.0-0
       - libglib2.0-data
       - gsettings-desktop-schemas
+      #- fcitx-frontend-qt6
 
     override-build: |
       apt-get install -y software-properties-common
       add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ Kinetic universe multiverse"
       add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ Kinetic-updates universe multiverse"
       apt-get update
-      apt-get upgrade -y
-      apt-get install -y fcitx-frontend-qt6 
+      apt-get upgrade -y 
       craftctl default
 
 plugs:
