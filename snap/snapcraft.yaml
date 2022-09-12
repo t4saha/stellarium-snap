@@ -211,7 +211,7 @@ parts:
       - libglib2.0-0
       - libglib2.0-data
       - gsettings-desktop-schemas
-      #- fcitx-frontend-qt6
+      - fcitx-frontend-qt6
 
     override-build: |
       craftctl default
