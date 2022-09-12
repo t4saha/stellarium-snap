@@ -50,7 +50,7 @@ parts:
     source: https://github.com/Stellarium/stellarium.git
     source-type: git
     parse-info: [usr/share/metainfo/org.stellarium.Stellarium.appdata.xml] #appstream info
-    after: [desktop-stellarium, ShowMySky]
+    after: [ShowMySky, desktop-stellarium]
 
     override-pull: |
       # Checkout that latest stable version
@@ -211,14 +211,15 @@ parts:
       - libglib2.0-0
       - libglib2.0-data
       - gsettings-desktop-schemas
-      - fcitx-frontend-qt6
 
     override-build: |
-      craftctl default
+      apt-get install -y software-properties-common
       add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ Kinetic universe multiverse"
       add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ Kinetic-updates universe multiverse"
       apt-get update
       apt-get upgrade -y
+      apt-get install -y fcitx-frontend-qt6 
+      craftctl default
 
 plugs:
   # Support for common GTK themes
