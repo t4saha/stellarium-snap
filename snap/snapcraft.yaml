@@ -217,7 +217,6 @@ parts:
       apt-get install -y software-properties-common
       add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ Kinetic universe multiverse"
       add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ Kinetic-updates universe multiverse"
-      add-apt-repository "deb http://ftp.de.debian.org/debian sid main"
       apt-get update
       apt-get upgrade -y 
       craftctl default
