@@ -50,7 +50,7 @@ parts:
     source: https://github.com/Stellarium/stellarium.git
     source-type: git
     parse-info: [usr/share/metainfo/org.stellarium.Stellarium.appdata.xml] #appstream info
-    after: [desktop-stellarium, ShowMySky]
+    after: [ShowMySky, desktop-stellarium]
 
     override-pull: |
       # Checkout that latest stable version
@@ -146,6 +146,7 @@ parts:
 
   ShowMySky:  
     plugin: nil
+    after: [desktop-stellarium]
     
     override-pull: |
       #craftctl default
