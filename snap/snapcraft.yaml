@@ -141,7 +141,7 @@ parts:
       - libqt6webenginecore6
       - libqt6webengine6-data
       - libqt6charts6
-      - qt6-wayland
+      #- qt6-wayland
       - libqt6webenginecore6-bin
 
   ShowMySky:  
@@ -194,9 +194,9 @@ parts:
       - xkb-data
       - fonts-ubuntu
       - dmz-cursor-theme
-      - light-themes
+      #- light-themes
       - adwaita-icon-theme
-      - gnome-themes-standard
+      #- gnome-themes-standard
       - shared-mime-info
       - libqt6gui6
       - libgdk-pixbuf2.0-0
@@ -214,15 +214,15 @@ parts:
       - gsettings-desktop-schemas
       #- fcitx-frontend-qt6
 
-plugs:
+#plugs:
   # Support for common GTK themes
   # https://forum.snapcraft.io/t/how-to-use-the-system-gtk-theme-via-the-gtk-common-themes-snap/6235
-  gsettings:
-  gtk-3-themes:
-    interface: content
-    target: $SNAP/data-dir/themes
-    default-provider: gtk-common-themes
-  icon-themes:
-    interface: content
-    target: $SNAP/data-dir/icons
-    default-provider: gtk-common-themes
+  #gsettings:
+  #gtk-3-themes:
+    #interface: content
+    #target: $SNAP/data-dir/themes
+    #default-provider: gtk-common-themes
+  #icon-themes:
+    #interface: content
+    #target: $SNAP/data-dir/icons
+    #default-provider: gtk-common-themes
