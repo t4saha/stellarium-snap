@@ -60,8 +60,7 @@ parts:
       # If the latest tag from the upstream project has not been released to
       # beta, build that tag instead of master.
       if [ "${last_committed_tag}" != "${last_released_tag}" ]; then
-        cd ../src
-        git clone -b "${last_committed_tag}" --depth 1 https://github.com/Stellarium/stellarium.git .
+        git clone -b "${last_committed_tag}" --depth 1 https://github.com/Stellarium/stellarium.git $CRAFT_PART_SRC
       else
         craftctl default
       fi
