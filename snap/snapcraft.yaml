@@ -150,7 +150,7 @@ parts:
     override-pull: |
       #craftctl default
       if [ "$(arch)" = "x86_64" ]; then
-        git clone --depth 1 --branch v0.0.6 https://github.com/10110111/CalcMySky.git
+        git clone --depth 1 --branch v0.1.0 https://github.com/10110111/CalcMySky.git
       fi
 
     override-build: |
