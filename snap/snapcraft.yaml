@@ -58,14 +58,15 @@ parts:
       # beta, build that tag instead of master.
       if [ "${last_committed_tag}" != "${last_released_tag}" ]; then
         git clone -b "${last_committed_tag}" --depth 1 https://github.com/Stellarium/stellarium.git $CRAFT_PART_SRC
+        version="$(git describe --tags)"
       else
         craftctl default
+        prefix="v0."
+        v1="v1."
+        version="$(git describe --tags)"
+        version="${version#"$prefix"}"
+        version="${v1}${version}"
       fi
-      prefix="v0."
-      v1="v1."
-      version="$(git describe --tags)"
-      version="${version#"$prefix"}"
-      version="${v1}${version}"
       craftctl set version="$version"
       
     override-build: |
