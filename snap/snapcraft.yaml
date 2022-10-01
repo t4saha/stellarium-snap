@@ -65,7 +65,8 @@ parts:
         cd ../src
         git checkout "${last_committed_tag}"
       fi
-      craftctl set version "$(git describe --tag)"
+      version = "$(git describe --tag)"
+      craftctl set version="$version"
       
     override-build: |
       if [ "$(arch)" = "aarch64" ]; then
