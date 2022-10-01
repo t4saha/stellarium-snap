@@ -50,27 +50,23 @@ parts:
     after: [ShowMySky, desktop-stellarium]
 
     override-pull: |
-      craftctl default
-      set -x
-      
       # Checkout that latest stable version
-      last_committed_tag="$(git -C ../src tag | grep -v stellarium | sort -V | tail -n 1)"
+      last_committed_tag="$(git ls-remote --tags https://github.com/Stellarium/stellarium.git | grep -v {} | awk -F/ '{ print $3 }' | sort -V |tail -n 1)"
       last_released_tag="$(snap info stellarium-daily | awk '$1 == "latest/beta:" { print $2 }')"
       
       # If the latest tag from the upstream project has not been released to
       # beta, build that tag instead of master.
       if [ "${last_committed_tag}" != "${last_released_tag}" ]; then
-        pwd
-        git fetch
-        cd ../src
-        git checkout "${last_committed_tag}"
+        git clone -b "${last_committed_tag}" --depth 1 https://github.com/Stellarium/stellarium.git $CRAFT_PART_SRC
+        craftctl set version = "${last_committed_tag}"
+      else
+        craftctl default
+        v1=""
+        version="$(git describe --tags)"
+        version="${v1}${version}"
+        craftctl set version="$version"
       fi
-      prefix="v0."
-      v1=""
-      version="$(git describe --tags)"
-      version="${version#"$prefix"}"
-      version="${v1}${version}"
-      craftctl set version="$version"
+      
       
     override-build: |
       if [ "$(arch)" = "aarch64" ]; then
