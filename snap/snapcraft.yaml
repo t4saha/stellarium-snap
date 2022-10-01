@@ -65,7 +65,12 @@ parts:
         cd ../src
         git checkout "${last_committed_tag}"
       fi
-      snapcraftctl set-version="$(git describe --tag)"
+      prefix="v0."
+      v1=""
+      version="$(git describe --tags)"
+      version="${version#"$prefix"}"
+      version="${v1}${version}"
+      craftctl set version="$version"
       
     override-build: |
       if [ "$(arch)" = "aarch64" ]; then
