@@ -50,8 +50,8 @@ parts:
       craftctl set version=$(git describe --tags | awk '{ gsub("_","."); print $1 }')
     override-build: |    
       craftctl default
-      mkdir -p $SNAPCRAFT_PART_INSTALL/usr/share/icons/hicolor/128x128/apps
-      cp ../src/src/celestia/qt/data/celestia.png $SNAPCRAFT_PART_INSTALL/usr/share/icons/hicolor/128x128/apps    
+      mkdir -p $CRAFT_PART_INSTALL/usr/share/icons/hicolor/128x128/apps
+      cp ../src/src/celestia/qt/data/celestia.png $CRAFT_PART_INSTALL/usr/share/icons/hicolor/128x128/apps    
     build-packages:
       - libepoxy-dev
       - libjpeg-dev
@@ -90,8 +90,8 @@ parts:
     plugin: dump
     after : [celestia-qt]
     override-pull: |
-      craftctl pull
-      chmod +x $SNAPCRAFT_PART_SRC/run-celestia-qt.sh
+      craftctl default
+      chmod +x $CRAFT_PART_SRC/run-celestia-qt.sh
     source: ./snap/local
     source-type: local
     organize:
