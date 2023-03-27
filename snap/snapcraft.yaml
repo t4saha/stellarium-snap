@@ -156,6 +156,9 @@ parts:
       #- qt6-wayland #not working
       #GPS Funcionality
       - libgps28
+      #OpenGL Runtime Dependencies
+      - libglu1-mesa
+      - freeglut3
       #Obsolete Runtime Dependencies
       #- libasyncns0
       #- libflac8
