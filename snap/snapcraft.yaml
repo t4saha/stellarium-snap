@@ -49,6 +49,8 @@ parts:
     parse-info: [usr/share/metainfo/org.stellarium.Stellarium.appdata.xml] #appstream info
     after: [ShowMySky, desktop-stellarium]
     override-pull: |
+      # Point icon to the correct location
+      sed -i.bak -e 's|Icon=stellarium|Icon=/usr/share/icons/hicolor/64x64/apps/stellarium.png|g' data/org.stellarium.Stellarium.desktop
       # Checkout that latest stable version
       last_committed_tag="$(git ls-remote --tags https://github.com/Stellarium/stellarium.git | grep -v {} | awk -F/ '{ print $3 }' | sort -V |tail -n 1)"
       last_released_tag="$(snap info stellarium-daily | awk '$1 == "latest/beta:" { print $2 }')"
@@ -60,12 +62,7 @@ parts:
       else
         craftctl default
       fi
-      prefix="v1."
-      v1="v1."
-      version="$(git describe --tags)"
-      version="${version#"$prefix"}"
-      version="${v1}${version}"
-      craftctl set version="$version"           
+      craftctl set version=$(git describe --tags) 
     override-build: |
       if [ "$(arch)" = "aarch64" ]; then
         cmake $CRAFT_PART_SRC -DENABLE_SHOWMYSKY=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$CRAFT_PART_INSTALL/usr
