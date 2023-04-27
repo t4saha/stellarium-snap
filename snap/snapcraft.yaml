@@ -5,6 +5,9 @@ description: |
   Stellarium renders 3D photo-realistic skies in real-time. With Stellarium, you
   really see what you can see with your eyes, binoculars or a small telescope.
 adopt-info: stellarium
+donation: https://opencollective.com/stellarium/donate
+issues: https://github.com/Stellarium/stellarium/issues 
+website: https://stellarium.org
 grade: stable # must be 'stable' to release into candidate/stable channels
 confinement: strict
 architectures: #build Architectures
