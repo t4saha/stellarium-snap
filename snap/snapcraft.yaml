@@ -1,5 +1,5 @@
 name: stellarium-daily # you probably want to 'snapcraft register <name>'
-base: core22
+base: core24
 summary: Free, open source planetarium software
 description: |
   Stellarium renders 3D photo-realistic skies in real-time. With Stellarium, you
@@ -10,9 +10,15 @@ issues: https://github.com/Stellarium/stellarium/issues
 website: https://stellarium.org
 grade: stable # must be 'stable' to release into candidate/stable channels
 confinement: strict
-architectures: #build Architectures
-   - build-on: amd64 
-   - build-on: arm64
+#Obsolete in Core22
+#architectures: #build Architectures
+#   - build-on: amd64 
+#   - build-on: arm64
+
+#Core2
+platforms:
+  amd64:
+  arm64:
    
 # this line enables LZO compression for the snap
 compression: lzo
