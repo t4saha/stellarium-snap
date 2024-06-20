@@ -142,16 +142,23 @@ parts:
       #QT6 Runtime Dependencies
       - libqt6multimedia6
       - libqt6multimediawidgets6
-      - libqt6opengl6
-      - libqt6openglwidgets6
+      #- libqt6opengl6
+      - libqt6opengl6t64
+      #- libqt6openglwidgets6
+      - libqt6openglwidgets6t64
       - libqt6positioning6
-      - libqt6printsupport6
+      #- libqt6printsupport6
+      - libqt6printsupport6t64
       - libqt6serialport6
       - libqt6charts6
-      - libqt6core6
-      - libqt6dbus6
-      - libqt6network6
-      - libqt6gui6
+      #- libqt6core6
+      - libqt6core6t64
+      #- libqt6dbus6
+      - libqt6dbus6t64
+      #- libqt6network6
+      - libqt6network6t64
+      #- libqt6gui6
+      - libqt6gui6t64
       - libqt6qml6
       - libqt6qmlmodels6
       - libqt6quick6
@@ -161,11 +168,13 @@ parts:
       - libqt6webenginecore6
       - libqt6webengine6-data
       - libqt6webenginewidgets6
-      - libqt6widgets6
+      #- libqt6widgets6
+      - libqt6widgets6t64
       - qt6-gtk-platformtheme
       #- qt6-wayland #not working
       #GPS Funcionality
-      - libgps28
+      #- libgps28
+      - libgps30t64
       #OpenGL Runtime Dependencies
       - libglu1-mesa
       - freeglut3
