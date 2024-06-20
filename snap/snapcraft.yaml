@@ -114,10 +114,12 @@ parts:
       - qt6-l10n-tools
       - qt6-webengine-dev
       - qt6-webengine-dev-tools
-      - libqt6charts6-dev
-      - libqt6opengl6-dev
+      #- libqt6charts6-dev
+      - qt6-charts-dev
+      #- libqt6opengl6-dev
       - libqt6positioning6-plugins
-      - libqt6serialport6-dev
+      #- libqt6serialport6-dev
+      - qt6-serialport-dev
       # for execstack flag removal
       - execstack
       #Obsolete Dependencies
@@ -212,7 +214,8 @@ parts:
         - build-essential
         - libeigen3-dev
         - libglm-dev
-        - libqt6opengl6-dev
+        #- libqt6opengl6-dev
+        - qt6-base-dev
         - libxkbcommon-x11-dev
   
   desktop-stellarium:
@@ -245,7 +248,7 @@ parts:
       #QT6
       - qt6-qpa-plugins
       - qt6-wayland
-      - libqt6gui6
+      - libqt6gui6t64
       #Other
       - libgtk-3-common
       - libglib2.0-bin
