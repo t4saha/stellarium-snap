@@ -62,6 +62,9 @@ parts:
     source: https://github.com/Stellarium/stellarium.git
     source-type: git
     parse-info: [usr/share/metainfo/org.stellarium.Stellarium.appdata.xml] #appstream info
+    build-environment:
+      - LD_LIBRARY_PATH: $CRAFT_STAGE/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
+      - LDFLAGS: ${LDFLAGS:+$LDFLAGS} -s
     after: [ShowMySky, desktop-stellarium]
     override-pull: |
       # Checkout that latest stable version
