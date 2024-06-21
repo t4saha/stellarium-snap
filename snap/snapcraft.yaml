@@ -179,7 +179,8 @@ parts:
       - libgps30t64
       #OpenGL Runtime Dependencies
       - libglu1-mesa
-      - freeglut3
+      #- freeglut3
+      - libglut3.12
       #Obsolete Runtime Dependencies
       #- libasyncns0
       #- libflac8
