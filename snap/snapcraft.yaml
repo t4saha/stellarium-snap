@@ -190,6 +190,8 @@ parts:
       #- libvorbis0a
       #- libvorbisenc2
       #- libpulse0
+      #Other Dependencies
+      - libproxy1v5
 
   ShowMySky:  
     plugin: nil
