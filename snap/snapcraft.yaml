@@ -1,5 +1,5 @@
 name: stellarium-daily # you probably want to 'snapcraft register <name>'
-base: core24
+base: core22
 summary: Free, open source planetarium software
 description: |
   Stellarium renders 3D photo-realistic skies in real-time. With Stellarium, you
@@ -10,19 +10,9 @@ issues: https://github.com/Stellarium/stellarium/issues
 website: https://stellarium.org
 grade: stable # must be 'stable' to release into candidate/stable channels
 confinement: strict
-#Obsolete in Core22
-#architectures: #build Architectures
-#   - build-on: amd64 
-#   - build-on: arm64
-
-#Core24
-platforms:
-  amd64:
-    build-on: amd64
-    build-for: amd64
-  arm64:
-    build-on: arm64
-    build-for: arm64
+architectures: #build Architectures
+   - build-on: amd64 
+   - build-on: arm64
    
 # this line enables LZO compression for the snap
 compression: lzo
@@ -50,8 +40,6 @@ layout:
     bind: $SNAP/usr/share/qt6
   /usr/share/X11:
     bind: $SNAP/usr/share/X11
-  /usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/libproxy:
-    bind: $SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/libproxy
 
 parts:
   stellarium:
@@ -62,9 +50,6 @@ parts:
     source: https://github.com/Stellarium/stellarium.git
     source-type: git
     parse-info: [usr/share/metainfo/org.stellarium.Stellarium.appdata.xml] #appstream info
-    build-environment:
-      - LD_LIBRARY_PATH: $CRAFT_STAGE/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
-      - LDFLAGS: ${LDFLAGS:+$LDFLAGS} -s
     after: [ShowMySky, desktop-stellarium]
     override-pull: |
       # Checkout that latest stable version
@@ -119,12 +104,10 @@ parts:
       - qt6-l10n-tools
       - qt6-webengine-dev
       - qt6-webengine-dev-tools
-      #- libqt6charts6-dev
-      - qt6-charts-dev
-      #- libqt6opengl6-dev
+      - libqt6charts6-dev
+      - libqt6opengl6-dev
       - libqt6positioning6-plugins
-      #- libqt6serialport6-dev
-      - qt6-serialport-dev
+      - libqt6serialport6-dev
       # for execstack flag removal
       - execstack
       #Obsolete Dependencies
@@ -149,23 +132,16 @@ parts:
       #QT6 Runtime Dependencies
       - libqt6multimedia6
       - libqt6multimediawidgets6
-      #- libqt6opengl6
-      - libqt6opengl6t64
-      #- libqt6openglwidgets6
-      - libqt6openglwidgets6t64
+      - libqt6opengl6
+      - libqt6openglwidgets6
       - libqt6positioning6
-      #- libqt6printsupport6
-      - libqt6printsupport6t64
+      - libqt6printsupport6
       - libqt6serialport6
       - libqt6charts6
-      #- libqt6core6
-      - libqt6core6t64
-      #- libqt6dbus6
-      - libqt6dbus6t64
-      #- libqt6network6
-      - libqt6network6t64
-      #- libqt6gui6
-      - libqt6gui6t64
+      - libqt6core6
+      - libqt6dbus6
+      - libqt6network6
+      - libqt6gui6
       - libqt6qml6
       - libqt6qmlmodels6
       - libqt6quick6
@@ -175,17 +151,14 @@ parts:
       - libqt6webenginecore6
       - libqt6webengine6-data
       - libqt6webenginewidgets6
-      #- libqt6widgets6
-      - libqt6widgets6t64
+      - libqt6widgets6
       - qt6-gtk-platformtheme
       #- qt6-wayland #not working
       #GPS Funcionality
-      #- libgps28
-      - libgps30t64
+      - libgps28
       #OpenGL Runtime Dependencies
       - libglu1-mesa
-      #- freeglut3
-      - libglut3.12
+      - freeglut3
       #Obsolete Runtime Dependencies
       #- libasyncns0
       #- libflac8
@@ -195,7 +168,6 @@ parts:
       #- libvorbis0a
       #- libvorbisenc2
       #- libpulse0
-      #Other Dependencies
 
   ShowMySky:  
     plugin: nil
@@ -221,8 +193,7 @@ parts:
         - build-essential
         - libeigen3-dev
         - libglm-dev
-        #- libqt6opengl6-dev
-        - qt6-base-dev
+        - libqt6opengl6-dev
         - libxkbcommon-x11-dev
   
   desktop-stellarium:
@@ -231,8 +202,6 @@ parts:
     source-depth : 1
     plugin: make
     make-parameters: ["FLAVOR=qt6"]
-    build-environment:
-      - LD_LIBRARY_PATH: $CRAFT_STAGE/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
     build-packages:
       - build-essential
       - qt6-base-dev
@@ -248,8 +217,7 @@ parts:
       - adwaita-icon-theme
       - qt6-gtk-platformtheme
       - libqt6svg6 # for loading icon themes which are svg
-      #- libgtk2.0-0
-      - libgtk2.0-0t64
+      - libgtk2.0-0
       - shared-mime-info
       - libgdk-pixbuf2.0-0
       #User Configaration
@@ -258,15 +226,11 @@ parts:
       #QT6
       - qt6-qpa-plugins
       - qt6-wayland
-      - libqt6gui6t64
+      - libqt6gui6
       #Other
       - libgtk-3-common
-      - libgtk-3-0t64
       - libglib2.0-bin
-      #- libglib2.0-0
-      - libnvidia-egl-wayland1
-      - libglib2.0-0t64
+      - libglib2.0-0
       - libglib2.0-data
-      - libssl3t64
       - gsettings-desktop-schemas
       #- fcitx-frontend-qt6
