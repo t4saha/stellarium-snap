@@ -200,6 +200,7 @@ parts:
       #- libpulse0
       #Other Dependencies
       - libnlopt-cxx0
+      - libexiv2-27
 
   ShowMySky:  
     plugin: nil
