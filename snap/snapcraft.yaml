@@ -128,6 +128,7 @@ parts:
       - libqt6positioning6-plugins
       #- libqt6serialport6-dev
       - qt6-serialport-dev
+      - libfast-float-dev
       # for execstack flag removal
       - execstack
       #Obsolete Dependencies
@@ -180,6 +181,7 @@ parts:
       - libqt6webenginewidgets6
       #- libqt6widgets6
       - libqt6widgets6t64
+      - libqt6concurrent6t64
       - qt6-gtk-platformtheme
       #- qt6-wayland #not working
       #GPS Funcionality
