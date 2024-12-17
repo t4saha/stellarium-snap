@@ -46,8 +46,8 @@ apps:
       QT_PLUGIN_PATH: $QT_PLUGIN_PATH:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/qt6/plugins
       LIBGL_DRIVERS_PATH: $LIBGL_DRIVERS_PATH:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/dri
       QTWEBENGINEPROCESS_PATH: $QTWEBENGINEPROCESS_PATH:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/qt6/libexec/QtWebEngineProcess
-      DISABLE_WAYLAND: 1 # wayland is broken
-      QT_QPA_PLATFORMTHEME: xcb # gtk3 is very slow and buggy
+      #DISABLE_WAYLAND: 1 # wayland is broken
+      #QT_QPA_PLATFORMTHEME: xcb # gtk3 is very slow and buggy
 
 layout:
   /usr/share/qt6:
@@ -183,7 +183,7 @@ parts:
       - libqt6widgets6t64
       - libqt6concurrent6t64
       - qt6-gtk-platformtheme
-      #- qt6-wayland #not working
+      - qt6-wayland #not working
       #GPS Funcionality
       #- libgps28
       - libgps30t64
