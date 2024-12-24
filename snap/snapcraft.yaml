@@ -104,6 +104,7 @@ parts:
       - libgps-dev
       - libnlopt-cxx-dev
       - libexiv2-dev
+      - libgles2-mesa-dev
       #ShowMySky Build Dependencies
       - libglm-dev
       - libeigen3-dev
@@ -191,6 +192,7 @@ parts:
       - libglu1-mesa
       #- freeglut3
       - libglut3.12
+      - libgles2
       #Obsolete Runtime Dependencies
       #- libasyncns0
       #- libflac8
