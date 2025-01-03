@@ -38,7 +38,7 @@ apps:
   stellarium:
     command: bin/desktop-launch $SNAP/usr/bin/stellarium
     common-id: org.stellarium.Stellarium
-    plugs: [desktop, desktop-legacy, browser-support, x11, unity7, gsettings, opengl, network, network-bind, audio-playback, home, raw-usb]
+    plugs: [desktop, desktop-legacy, wayland, browser-support, x11, unity7, gsettings, opengl, network, network-bind, audio-playback, home, raw-usb]
     #shared interfaces
     environment:
       HOME: "$SNAP_USER_COMMON"
@@ -46,8 +46,8 @@ apps:
       QT_PLUGIN_PATH: $QT_PLUGIN_PATH:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/qt6/plugins
       LIBGL_DRIVERS_PATH: $LIBGL_DRIVERS_PATH:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/dri
       QTWEBENGINEPROCESS_PATH: $QTWEBENGINEPROCESS_PATH:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/qt6/libexec/QtWebEngineProcess
-      DISABLE_WAYLAND: 1 # wayland is broken
-      QT_QPA_PLATFORMTHEME: xcb # gtk3 is very slow and buggy
+      #DISABLE_WAYLAND: 1 # wayland is broken
+      #QT_QPA_PLATFORMTHEME: xcb # gtk3 is very slow and buggy
 
 layout:
   /usr/share/qt6:
