@@ -204,16 +204,17 @@ parts:
       - libnlopt-cxx0
       - libexiv2-27
       - libnlopt0
+      
   cleanup:
     after: [desktop-stellarium, stellarium]
     plugin: nil
     override-prime: |
       set -eux
       for CRUFT in bug lintian man; do
-        rm -rf $SNAPCRAFT_PRIME/usr/share/$CRUFT
+        rm -rf $CRAFT_PRIME/usr/share/$CRUFT
       done
-      find $SNAPCRAFT_PRIME/usr/share/doc/ -type f -not -name 'copyright' -delete
-      find $SNAPCRAFT_PRIME/usr/share -type d -empty -delete
+      find $CRAFT_PRIME/usr/share/doc/ -type f -not -name 'copyright' -delete
+      find $CRAFT_PRIME/usr/share -type d -empty -delete
       
   desktop-stellarium:
     source: https://github.com/t4saha/snapcraft-desktop-helpers-Qt6.git
