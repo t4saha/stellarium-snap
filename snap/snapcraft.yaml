@@ -66,7 +66,7 @@ parts:
     source: https://github.com/Stellarium/stellarium.git
     source-type: git
     parse-info: [usr/share/metainfo/org.stellarium.Stellarium.appdata.xml] #appstream info
-    after: [ShowMySky, desktop-stellarium]
+    after: [desktop-stellarium]
     override-pull: |
       # Checkout that latest stable version
       last_committed_tag="$(git ls-remote --tags https://github.com/Stellarium/stellarium.git | grep -v {} | awk -F/ '{ print $3 }' | sort -V |tail -n 1)"
@@ -204,35 +204,17 @@ parts:
       - libnlopt-cxx0
       - libexiv2-27
       - libnlopt0
-
-  ShowMySky:  
+  cleanup:
+    after: [desktop-stellarium, stellarium]
     plugin: nil
-    after: [desktop-stellarium]
-    override-pull: |
-      #craftctl default
-      if [ "$(arch)" = "x86_64" ]; then
-        git clone --depth 1 https://github.com/10110111/CalcMySky.git
-      fi
-    override-build: |
-      #craftctl default
-      if [ "$(arch)" = "x86_64" ]; then
-        cd CalcMySky
-        mkdir build
-        cd build
-        cmake -DCMAKE_INSTALL_PREFIX=$CRAFT_PART_INSTALL/usr .. -DQT_VERSION=6 
-        make
-        make install
-      fi
-    build-packages:
-      - git
-      - on amd64:
-        - build-essential
-        - libeigen3-dev
-        - libglm-dev
-        #- libqt6opengl6-dev
-        - qt6-base-dev
-        - libxkbcommon-x11-dev
-  
+    override-prime: |
+      set -eux
+      for CRUFT in bug lintian man; do
+        rm -rf $SNAPCRAFT_PRIME/usr/share/$CRUFT
+      done
+      find $SNAPCRAFT_PRIME/usr/share/doc/ -type f -not -name 'copyright' -delete
+      find $SNAPCRAFT_PRIME/usr/share -type d -empty -delete
+      
   desktop-stellarium:
     source: https://github.com/t4saha/snapcraft-desktop-helpers-Qt6.git
     source-subdir: qt
