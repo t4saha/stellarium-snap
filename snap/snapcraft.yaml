@@ -204,14 +204,21 @@ parts:
       - libnlopt-cxx0
       - libexiv2-27
       - libnlopt0
+      - libmd4c-dev
+      - libmd4c-html0-dev
       
   cleanup:
     after: [desktop-stellarium, stellarium]
     plugin: nil
+    build-snaps:  # List all content-snaps and base snaps you're using here
+    - core24
     override-prime: |
       set -eux
       for CRUFT in bug lintian man; do
         rm -rf $CRAFT_PRIME/usr/share/$CRUFT
+      done
+      for snap in "core24"; do  # List all content-snaps and base snaps you're using here
+        cd "/snap/$snap/current" && find . -type f,l -exec rm -f "$CRAFT_PRIME/{}" \;
       done
       find $CRAFT_PRIME/usr/share/doc/ -type f -not -name 'copyright' -delete
       find $CRAFT_PRIME/usr/share -type d -empty -delete
