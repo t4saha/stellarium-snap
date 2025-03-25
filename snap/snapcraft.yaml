@@ -211,7 +211,7 @@ parts:
     after: [desktop-stellarium, stellarium]
     plugin: nil
     build-snaps:  # List all content-snaps and base snaps you're using here
-    - core24
+      - core24
     override-prime: |
       set -eux
       for CRUFT in bug lintian man; do
