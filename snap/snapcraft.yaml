@@ -23,7 +23,50 @@ platforms:
   arm64:
     build-on: arm64
     build-for: arm64
-   
+
+plugs:
+  # For file picker demo
+  home:
+  removable-media: # Non-A/C
+
+  #Control USB Hardware
+  raw-usb:
+
+  # Common graphical application resources
+  desktop:
+  desktop-legacy:
+  unity7:
+  wayland:
+  x11:
+
+  # On a Wayland session, GTK instead uses the GSettings API to read the users preferences directly, bypassing the display server. So plugging the gsettings interface is also necessary.
+  # Allowing GTK to detect the selected system theme - How to use the system GTK theme via the gtk-common-themes snap - doc - snapcraft.io
+  gsettings:
+
+  # For sound theme demo
+  audio-playback:
+
+  #For Network
+  browser-support:
+  network:
+  network-bind:
+
+  # For OpenGL demo
+  opengl:
+
+  gtk-3-themes:
+    interface: content
+    target: $SNAP/share/themes
+    default-provider: gtk-common-themes:gtk-3-themes
+  icon-themes:
+    interface: content
+    target: $SNAP/share/icons
+    default-provider: gtk-common-themes:icon-themes
+  sound-themes:
+    interface: content
+    target: $SNAP/share/sounds
+    default-provider: gtk-common-themes:sounds-themes
+    
 # this line enables LZO compression for the snap
 compression: lzo
 
@@ -38,7 +81,6 @@ apps:
   stellarium:
     command: bin/desktop-launch $SNAP/usr/bin/stellarium
     common-id: org.stellarium.Stellarium
-    plugs: [desktop, desktop-legacy, wayland, browser-support, x11, unity7, gsettings, opengl, network, network-bind, audio-playback, home, raw-usb]
     #shared interfaces
     environment:
       HOME: "$SNAP_USER_COMMON"
