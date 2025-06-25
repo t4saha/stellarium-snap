@@ -38,9 +38,10 @@ compression: lzo
 apps:
   stellarium:
     command: bin/desktop-launch $SNAP/usr/bin/stellarium
+    plugs: [desktop, desktop-legacy, wayland, browser-support, x11, unity7, gsettings, opengl, network, network-bind, audio-playback, home, raw-usb]
     common-id: org.stellarium.Stellarium
     #shared interfaces
-    plugs:
+    
     environment:
       HOME: "$SNAP_USER_COMMON"
       LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/libproxy:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/pulseaudio
@@ -60,7 +61,7 @@ layout:
 
 parts:
   stellarium:
-    plugs: [desktop, desktop-legacy, wayland, browser-support, x11, unity7, gsettings, opengl, network, network-bind, audio-playback, home, raw-usb]
+    plugin: cmake
     cmake-parameters:
       - -DCMAKE_BUILD_TYPE=Release
       - -DCMAKE_INSTALL_PREFIX:PATH=/usr
