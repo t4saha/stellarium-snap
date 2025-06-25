@@ -24,48 +24,7 @@ platforms:
     build-on: arm64
     build-for: arm64
 
-plugs:
-  # For file picker demo
-  home:
-  removable-media: # Non-A/C
 
-  #Control USB Hardware
-  raw-usb:
-
-  # Common graphical application resources
-  desktop:
-  desktop-legacy:
-  unity7:
-  wayland:
-  x11:
-
-  # On a Wayland session, GTK instead uses the GSettings API to read the users preferences directly, bypassing the display server. So plugging the gsettings interface is also necessary.
-  # Allowing GTK to detect the selected system theme - How to use the system GTK theme via the gtk-common-themes snap - doc - snapcraft.io
-  gsettings:
-
-  # For sound theme demo
-  audio-playback:
-
-  #For Network
-  browser-support:
-  network:
-  network-bind:
-
-  # For OpenGL demo
-  opengl:
-
-  gtk-3-themes:
-    interface: content
-    target: $SNAP/share/themes
-    default-provider: gtk-common-themes:gtk-3-themes
-  icon-themes:
-    interface: content
-    target: $SNAP/share/icons
-    default-provider: gtk-common-themes:icon-themes
-  sound-themes:
-    interface: content
-    target: $SNAP/share/sounds
-    default-provider: gtk-common-themes:sounds-themes
     
 # this line enables LZO compression for the snap
 compression: lzo
@@ -82,12 +41,49 @@ apps:
     command: bin/desktop-launch $SNAP/usr/bin/stellarium
     common-id: org.stellarium.Stellarium
     #shared interfaces
+    plugs:
+      # For file picker demo
+      home:
+      removable-media: # Non-A/C
+      #Control USB Hardware
+      raw-usb:
+      # Common graphical application resources
+      desktop:
+      desktop-legacy:
+      unity7:
+      wayland:
+      x11:
+      # On a Wayland session, GTK instead uses the GSettings API to read the users preferences directly, bypassing the display server. So plugging the gsettings interface is also necessary.
+      # Allowing GTK to detect the selected system theme - How to use the system GTK theme via the gtk-common-themes snap - doc - snapcraft.io
+      gsettings:
+      # For sound theme demo
+      audio-playback:
+      #For Network
+      browser-support:
+      network:
+      network-bind:
+      # For OpenGL demo
+      opengl:
+
+      gtk-3-themes:
+        interface: content
+        target: $SNAP/share/themes
+        default-provider: gtk-common-themes:gtk-3-themes
+      icon-themes:
+        interface: content
+        target: $SNAP/share/icons
+        default-provider: gtk-common-themes:icon-themes
+      sound-themes:
+        interface: content
+        target: $SNAP/share/sounds
+        default-provider: gtk-common-themes:sounds-themes
+
     environment:
       HOME: "$SNAP_USER_COMMON"
       LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/libproxy:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/pulseaudio
       QT_PLUGIN_PATH: $QT_PLUGIN_PATH:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/qt6/plugins
       LIBGL_DRIVERS_PATH: $LIBGL_DRIVERS_PATH:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/dri
-      QTWEBENGINEPROCESS_PATH: $QTWEBENGINEPROCESS_PATH:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/qt6/libexec/QtWebEngineProcess
+      QTWEBENGINEPROCESS_PATH: $QTWEBENGINEPROCESS_PATH:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/qt6/libexec/QtWebEngineProcess:$SNAP/usr/lib/qt6/libexec/QtWebEngineProcess
       #DISABLE_WAYLAND: 1 # wayland is broken
       #QT_QPA_PLATFORMTHEME: xcb # gtk3 is very slow and buggy
 
