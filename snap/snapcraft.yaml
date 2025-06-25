@@ -83,7 +83,7 @@ apps:
       LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/libproxy:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/pulseaudio
       QT_PLUGIN_PATH: $QT_PLUGIN_PATH:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/qt6/plugins
       LIBGL_DRIVERS_PATH: $LIBGL_DRIVERS_PATH:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/dri
-      QTWEBENGINEPROCESS_PATH: $QTWEBENGINEPROCESS_PATH:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/qt6/libexec/QtWebEngineProcess:$SNAP/usr/lib/qt6/libexec/QtWebEngineProcess
+      #QTWEBENGINEPROCESS_PATH: $QTWEBENGINEPROCESS_PATH:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/qt6/libexec/QtWebEngineProcess:$SNAP/usr/lib/qt6/libexec/QtWebEngineProcess
       #DISABLE_WAYLAND: 1 # wayland is broken
       #QT_QPA_PLATFORMTHEME: xcb # gtk3 is very slow and buggy
 
