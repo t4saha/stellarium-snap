@@ -108,6 +108,7 @@ parts:
       - libgps-dev
       - libnlopt-cxx-dev
       - libexiv2-dev
+      - libtbb-dev
       #ShowMySky Build Dependencies
       - libglm-dev
       - libeigen3-dev
@@ -210,6 +211,7 @@ parts:
       - libnlopt0
       - libmd4c-dev
       - libmd4c-html0-dev
+      - libtbb12
       
   cleanup:
     after: [desktop-stellarium, stellarium]
