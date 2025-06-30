@@ -93,7 +93,7 @@ parts:
       else
         craftctl default
       fi
-      find / ! -readable -prune -o -type f -name "libQt6WebEngineCore.so.*" -exec ls {} \; -exec execstack --clear-execstack {} \; || true
+      #find / ! -readable -prune -o -type f -name "libQt6WebEngineCore.so.*" -exec ls {} \; -exec execstack --clear-execstack {} \; || true
     build-packages:
       #Essential Build Dependencies
       - build-essential
