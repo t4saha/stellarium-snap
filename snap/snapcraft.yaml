@@ -51,6 +51,7 @@ apps:
       #DISABLE_WAYLAND: 1 # wayland is broken
       #QT_QPA_PLATFORMTHEME: xcb # gtk3 is very slow and buggy
       QTWEBENGINEPROCESS_PATH: $QTWEBENGINEPROCESS_PATH:$SNAP/usr/lib/qt6/libexec/QtWebEngineProcess
+      QTWEBENGINE_DISABLE_SANDBOX: 1
 
 layout:
   /usr/share/qt6:
@@ -273,7 +274,6 @@ parts:
 plugs:
   # Support for common GTK themes
   # https://forum.snapcraft.io/t/how-to-use-the-system-gtk-theme-via-the-gtk-common-themes-snap/6235
-  gsettings:
   gtk-3-themes:
     interface: content
     target: $SNAP/data-dir/themes
