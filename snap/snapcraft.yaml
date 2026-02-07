@@ -175,6 +175,7 @@ parts:
       - libqt6network6t64
       #- libqt6gui6
       - libqt6gui6t64
+      - Qt6-image-formats-plugins
       - libqt6qml6
       - libqt6qmlmodels6
       - libqt6quick6
