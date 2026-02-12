@@ -67,19 +67,19 @@ parts:
     cmake-parameters:
       - -DCMAKE_BUILD_TYPE=Release
       - -DCMAKE_INSTALL_PREFIX:PATH=/usr
-    source: https://github.com/Stellarium/stellarium.git
+    source: https://github.com/t4saha/stellarium_gravityText.git
     source-type: git
     parse-info: [usr/share/metainfo/org.stellarium.Stellarium.appdata.xml] #appstream info
     after: [desktop-stellarium]
     override-pull: |
       # Checkout that latest stable version
-      last_committed_tag="$(git ls-remote --tags https://github.com/Stellarium/stellarium.git | grep -v {} | awk -F/ '{ print $3 }' | sort -V |tail -n 1)"
+      last_committed_tag="$(git ls-remote --tags https://github.com/t4saha/stellarium_gravityText.git | grep -v {} | awk -F/ '{ print $3 }' | sort -V |tail -n 1)"
       last_released_tag="$(snap info stellarium-daily | awk '$1 == "latest/beta:" { print $2 }')"
       
       # If the latest tag from the upstream project has not been released to
       # beta, build that tag instead of master.
       if [ "${last_committed_tag}" != "${last_released_tag}" ]; then
-        git clone -b "${last_committed_tag}" --depth 1 https://github.com/Stellarium/stellarium.git $CRAFT_PART_SRC
+        git clone -b "${last_committed_tag}" --depth 1 https://github.com/t4saha/stellarium_gravityText.git $CRAFT_PART_SRC
       else
         craftctl default
       fi
