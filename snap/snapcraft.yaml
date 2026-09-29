@@ -1,5 +1,5 @@
 name: stellarium-daily # you probably want to 'snapcraft register <name>'
-base: core24
+base: core26
 summary: Free, open source planetarium software
 description: |
   Stellarium renders 3D photo-realistic skies in real-time. With Stellarium, you
@@ -95,6 +95,7 @@ parts:
         craftctl default
       fi
       #find / ! -readable -prune -o -type f -name "libQt6WebEngineCore.so.*" -exec ls {} \; -exec execstack --clear-execstack {} \; || true
+      
     build-packages:
       #Essential Build Dependencies
       - build-essential
@@ -109,9 +110,6 @@ parts:
       - libnlopt-cxx-dev
       - libexiv2-dev
       - libtbb-dev
-      #ShowMySky Build Dependencies
-      - libglm-dev
-      - libeigen3-dev
       #XKB Build Dependencies
       - libxkbcommon-x11-dev
       #QT6 Build Dependencies
@@ -124,62 +122,45 @@ parts:
       - qt6-base-dev-tools
       - qt6-qpa-plugins
       - qt6-image-formats-plugins
-      - libqt6svg6-dev
+      - qt6-speech-dev
+      - qt6-svg-dev
       - qt6-l10n-tools
       - qt6-webengine-dev
       - qt6-webengine-dev-tools
-      #- libqt6charts6-dev
       - qt6-charts-dev
-      #- libqt6opengl6-dev
       - libqt6positioning6-plugins
-      #- libqt6serialport6-dev
       - qt6-serialport-dev
       - libfast-float-dev
       # for execstack flag removal
       - execstack
-      #Obsolete Dependencies
-      #- libqt6svg6-dev
-      #- mesa-common-dev
-      #- qt6-declarative-dev
-      #- qt6-declarative-dev-tools
-      #- libxcb-xkb-dev
-      #- libxkbcommon-dev      
-      #- linguist-qt6
-      #- libqt6webchannel6-dev
-      #- libqt6webenginewidgets6
-      #- libqt6webengine6-data
-      #- libqt6webenginecore6-bin
+      
     stage-packages:
       #Media Runtime Dependencies
-      - gstreamer1.0-plugins-base
-      - gstreamer1.0-plugins-good
-      - gstreamer1.0-pulseaudio
-      - gstreamer1.0-libav
-      - gstreamer1.0-vaapi
+      - gstreamer1.0pluginsbase
+      - gstreamer1.0pluginsgood
+      - gstreamer1.0pulseaudio
+      - gstreamer1.0libav
+      - gstreamer1.0vaapi
       #QT6 Runtime Dependencies
       - libqt6multimedia6
       - libqt6multimediawidgets6
-      #- libqt6opengl6
-      - libqt6opengl6t64
-      #- libqt6openglwidgets6
-      - libqt6openglwidgets6t64
+      - libqt6opengl6
+      - libqt6openglwidgets6
       - libqt6positioning6
-      #- libqt6printsupport6
-      - libqt6printsupport6t64
+      - libqt6printsupport6
       - libqt6serialport6
       - libqt6charts6
-      #- libqt6core6
       - libqt6core6t64
-      #- libqt6dbus6
-      - libqt6dbus6t64
-      #- libqt6network6
-      - libqt6network6t64
-      #- libqt6gui6
-      - libqt6gui6t64
+      - libqt6dbus6
+      - libqt6network6
+      - libqt6gui6
       - qt6-image-formats-plugins
+      - libqt6svg6
       - libqt6svgwidgets6
       - libqt6qml6
+      - libqt6qmlmeta6
       - libqt6qmlmodels6
+      - libqt6qmlworkerscript6
       - libqt6quick6
       - libqt6quickwidgets6
       - libqt6webchannel6
@@ -187,40 +168,41 @@ parts:
       - libqt6webenginecore6
       - libqt6webengine6-data
       - libqt6webenginewidgets6
-      #- libqt6widgets6
-      - libqt6widgets6t64
-      - libqt6concurrent6t64
+      - libqt6widgets6
+      - libqt6concurrent6
       - qt6-gtk-platformtheme
-      #- qt6-wayland #not working
+      - qt6-translations-l10n
+      #Qt6 plugins
+      - qt6-qpa-plugins
+      - qt6-svg-plugins
+      #wayland Qt6
+      - qt6-wayland
+      - libqt6waylandclient6
+      - libqt6waylandcompositor6
+      - libqt6wlshellintegration6
       #GPS Funcionality
-      #- libgps28
-      - libgps30t64
+      - libgps32
       #OpenGL Runtime Dependencies
-      - libglu1-mesa
-      #- freeglut3
-      - libglut3.12
-      #Obsolete Runtime Dependencies
-      #- libasyncns0
-      #- libflac8
-      #- gtk3-nocsd
-      #- libogg0
-      #- libsndfile1
-      #- libvorbis0a
-      #- libvorbisenc2
-      #- libpulse0
+      - libopengl0
+      #Speech
+      -libqt6texttospeech6
+      #TouchScreen
+      - libts0t64
       #Other Dependencies
-      - libnlopt-cxx0
-      - libexiv2-27
-      - libnlopt0
-      - libmd4c-dev
-      - libmd4c-html0-dev
-      - libtbb12
+      - libnloptcxx0
+      -libexiv2-28
+      - libmd4c0
+      - libmd4c-html
+      - libb2-1
+      - libminizip1t64
+      - sse3-support
+      - calcmysky
       
   cleanup:
     after: [desktop-stellarium, stellarium]
     plugin: nil
     build-snaps:  # List all content-snaps and base snaps you're using here
-      - core24
+      - core26
     override-prime: |
       set -eux
       for CRUFT in bug lintian man; do
@@ -247,34 +229,11 @@ parts:
       #Kebourd I/O
       - libxkbcommon0
       - xkb-data
-      #Theming
-      - fonts-ubuntu
-      - dmz-cursor-theme
-      - adwaita-icon-theme
-      - qt6-gtk-platformtheme
-      - libqt6svg6 # for loading icon themes which are svg
-      #- libgtk2.0-0
-      - libgtk2.0-0t64
-      - shared-mime-info
-      #- libgdk-pixbuf2.0-0
-      #User Configaration
-      - locales-all
       - xdg-user-dirs
-      #QT6
-      - qt6-qpa-plugins
-      - qt6-wayland
-      - libqt6gui6t64
       #Other
       - libgtk-3-common
       - libgtk-3-0t64
-      - libglib2.0-bin
-      #- libglib2.0-0
-      - libnvidia-egl-wayland1
-      - libglib2.0-0t64
-      - libglib2.0-data
-      #- libssl3t64
       - gsettings-desktop-schemas
-      #- fcitx-frontend-qt6
 
 plugs:
   # Support for common GTK themes
