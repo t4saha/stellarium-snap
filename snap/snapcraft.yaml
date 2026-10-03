@@ -193,7 +193,7 @@ parts:
       #TouchScreen
       - libts0t64
       #Other Dependencies
-      - libnloptcxx0
+      - libnlopt-cxx0
       - libexiv2-28
       - libmd4c0
       - libmd4c-html0
