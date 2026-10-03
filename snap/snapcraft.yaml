@@ -136,11 +136,11 @@ parts:
       
     stage-packages:
       #Media Runtime Dependencies
-      - gstreamer1.0pluginsbase
-      - gstreamer1.0pluginsgood
-      - gstreamer1.0pulseaudio
-      - gstreamer1.0libav
-      - gstreamer1.0vaapi
+      - gstreamer1.0-plugins-base
+      - gstreamer1.0-plugins-good
+      - gstreamer1.0-pulseaudio
+      - gstreamer1.0-libav
+      - gstreamer1.0-vaapi
       #QT6 Runtime Dependencies
       - libqt6multimedia6
       - libqt6multimediawidgets6
