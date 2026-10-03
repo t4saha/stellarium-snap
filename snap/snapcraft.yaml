@@ -185,12 +185,12 @@ parts:
       #OpenGL Runtime Dependencies
       - libopengl0
       #Speech
-      -libqt6texttospeech6
+      - libqt6texttospeech6
       #TouchScreen
       - libts0t64
       #Other Dependencies
       - libnloptcxx0
-      -libexiv2-28
+      - libexiv2-28
       - libmd4c0
       - libmd4c-html
       - libb2-1
