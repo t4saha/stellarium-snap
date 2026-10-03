@@ -132,7 +132,7 @@ parts:
       - qt6-serialport-dev
       - libfast-float-dev
       # for execstack flag removal
-      - execstack
+      #- execstack
       
     stage-packages:
       #Media Runtime Dependencies
