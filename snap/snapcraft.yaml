@@ -201,6 +201,7 @@ parts:
       - libminizip1t64
       - sse3-support
       - calcmysky
+      - libtbb12
       
   cleanup:
     after: [desktop-stellarium, stellarium]
