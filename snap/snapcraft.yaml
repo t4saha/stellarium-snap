@@ -1,4 +1,4 @@
-name: stellarium-daily # you probably want to 'snapcraft register <name>'
+name: stellarium-daily
 base: core26
 summary: Free, open source planetarium software
 description: |
@@ -8,14 +8,9 @@ adopt-info: stellarium
 donation: https://opencollective.com/stellarium/donate
 issues: https://github.com/Stellarium/stellarium/issues 
 website: https://stellarium.org
-grade: stable # must be 'stable' to release into candidate/stable channels
+grade: stable
 confinement: strict
-#Obsolete in Core22
-#architectures: #build Architectures
-#   - build-on: amd64 
-#   - build-on: arm64
 
-#Core24
 platforms:
   amd64:
     build-on: amd64
@@ -24,16 +19,7 @@ platforms:
     build-on: arm64
     build-for: arm64
     
-    
-# this line enables LZO compression for the snap
 compression: lzo
-
-#links:
-#website: https://stellarium.org
-#issues: [https://github.com/t4saha/stellarium-snap/issues, https://github.com/Stellarium/stellarium/issues]
-#contact: https://github.com/t4saha/stellarium-snap
-#help: https://github.com/Stellarium/stellarium/releases/download/v0.22.2/stellarium_user_guide-0.22.2-1.pdf
-#translation: https://www.transifex.com/stellarium/stellarium
 
 apps:
   stellarium:
@@ -56,15 +42,11 @@ apps:
       - home
       - raw-usb
     common-id: org.stellarium.Stellarium
-    #shared interfaces
     
     environment:
       HOME: "$SNAP_USER_COMMON"
       LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/libproxy:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/pulseaudio
       QT_PLUGIN_PATH: $QT_PLUGIN_PATH:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/qt6/plugins
-      #QTWEBENGINEPROCESS_PATH: $QTWEBENGINEPROCESS_PATH:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/qt6/libexec/QtWebEngineProcess:$SNAP/usr/lib/qt6/libexec/QtWebEngineProcess
-      #DISABLE_WAYLAND: 1 # wayland is broken
-      #QT_QPA_PLATFORMTHEME: xcb # gtk3 is very slow and buggy
       QTWEBENGINEPROCESS_PATH: $SNAP/usr/lib/qt6/libexec/QtWebEngineProcess
       QTWEBENGINE_DISABLE_SANDBOX: 1
 
@@ -88,21 +70,17 @@ parts:
       - -DCMAKE_INSTALL_PREFIX:PATH=/usr
     source: https://github.com/Stellarium/stellarium.git
     source-type: git
-    parse-info: [usr/share/metainfo/org.stellarium.Stellarium.appdata.xml] #appstream info
+    parse-info: [usr/share/metainfo/org.stellarium.Stellarium.appdata.xml]
     after: [desktop-stellarium]
     override-pull: |
-      # Checkout that latest stable version
       last_committed_tag="$(git ls-remote --tags https://github.com/Stellarium/stellarium.git | grep -v {} | awk -F/ '{ print $3 }' | sort -V |tail -n 1)"
       last_released_tag="$(snap info stellarium-daily | awk '$1 == "latest/beta:" { print $2 }')"
       
-      # If the latest tag from the upstream project has not been released to
-      # beta, build that tag instead of master.
       if [ "${last_committed_tag}" != "${last_released_tag}" ]; then
         git clone -b "${last_committed_tag}" --depth 1 https://github.com/Stellarium/stellarium.git $CRAFT_PART_SRC
       else
         craftctl default
       fi
-      # Point icon to the correct location
       sed -i.bak -e 's|Icon=stellarium|Icon=/usr/share/icons/hicolor/64x64/apps/stellarium.png|g' data/org.stellarium.Stellarium.desktop
       craftctl set version=$(git describe --tags) 
     override-build: |
@@ -113,15 +91,12 @@ parts:
       else
         craftctl default
       fi
-      #find / ! -readable -prune -o -type f -name "libQt6WebEngineCore.so.*" -exec ls {} \; -exec execstack --clear-execstack {} \; || true
       
     build-packages:
-      #Essential Build Dependencies
       - build-essential
       - zlib1g-dev
       - libgl1-mesa-dev
       - libdrm-dev
-      #Optional Build Dependencies
       - gettext
       - doxygen
       - graphviz
@@ -129,9 +104,7 @@ parts:
       - libnlopt-cxx-dev
       - libexiv2-dev
       - libtbb-dev
-      #XKB Build Dependencies
       - libxkbcommon-x11-dev
-      #QT6 Build Dependencies
       - qt6-base-dev
       - qt6-base-private-dev
       - qt6-multimedia-dev
@@ -150,17 +123,13 @@ parts:
       - libqt6positioning6-plugins
       - qt6-serialport-dev
       - libfast-float-dev
-      # for execstack flag removal
-      #- execstack
       
     stage-packages:
-      #Media Runtime Dependencies
       - gstreamer1.0-plugins-base
       - gstreamer1.0-plugins-good
       - gstreamer1.0-pulseaudio
       - gstreamer1.0-libav
       - gstreamer1.0-vaapi
-      #QT6 Runtime Dependencies
       - libqt6multimedia6
       - libqt6multimediawidgets6
       - libqt6opengl6
@@ -191,23 +160,16 @@ parts:
       - libqt6concurrent6
       - qt6-gtk-platformtheme
       - qt6-translations-l10n
-      #Qt6 plugins
       - qt6-qpa-plugins
       - qt6-svg-plugins
-      #wayland Qt6
       - qt6-wayland
       - libqt6waylandclient6
       - libqt6waylandcompositor6
       - libqt6wlshellintegration6
-      #GPS Funcionality
       - libgps32
-      #OpenGL Runtime Dependencies
       - libopengl0
-      #Speech
       - libqt6texttospeech6
-      #TouchScreen
       - libts0t64
-      #Other Dependencies
       - libnlopt-cxx0
       - libexiv2-28
       - libmd4c0
@@ -217,20 +179,19 @@ parts:
       - sse3-support
       - calcmysky
       - libtbb12
-      #Sound
       - libpipewire-0.3-0t64
       
   cleanup:
     after: [desktop-stellarium, stellarium, gpu-2604]
     plugin: nil
-    build-snaps:  # List all content-snaps and base snaps you're using here
+    build-snaps:
       - core26
     override-prime: |
       set -eux
       for CRUFT in bug lintian man; do
         rm -rf $CRAFT_PRIME/usr/share/$CRUFT
       done
-      for snap in "core24"; do  # List all content-snaps and base snaps you're using here
+      for snap in "core24"; do
         cd "/snap/$snap/current" && find . -type f,l -exec rm -f "$CRAFT_PRIME/{}" \;
       done
       find $CRAFT_PRIME/usr/share/doc/ -type f -not -name 'copyright' -delete
@@ -239,7 +200,7 @@ parts:
   desktop-stellarium:
     source: https://github.com/t4saha/snapcraft-desktop-helpers-Qt6.git
     source-subdir: qt
-    source-depth : 1
+    source-depth: 1
     plugin: make
     make-parameters: ["FLAVOR=qt6"]
     build-packages:
@@ -248,28 +209,24 @@ parts:
       - dpkg-dev
       - software-properties-common
     stage-packages:
-      #Kebourd I/O
       - libxkbcommon0
       - xkb-data
       - xdg-user-dirs
-      #Other
       - libgtk-3-common
       - libgtk-3-0t64
       - gsettings-desktop-schemas
 
-    gpu-2604:
-      after: [desktop-stellarium, stellarium]
-      source: https://github.com/canonical/gpu-snap.git
-      plugin: dump
-      override-prime: |
-        craftctl default
-        ${CRAFT_PART_SRC}/bin/gpu-2604-cleanup mesa-2604
-      prime:
+  gpu-2604:
+    after: [desktop-stellarium, stellarium]
+    source: https://github.com/canonical/gpu-snap.git
+    plugin: dump
+    override-prime: |
+      craftctl default
+      ${CRAFT_PART_SRC}/bin/gpu-2604-cleanup mesa-2604
+    prime:
       - bin/gpu-2604-wrapper
 
 plugs:
-  # Support for common GTK themes
-  # https://forum.snapcraft.io/t/how-to-use-the-system-gtk-theme-via-the-gtk-common-themes-snap/6235
   gtk-3-themes:
     interface: content
     target: $SNAP/data-dir/themes
