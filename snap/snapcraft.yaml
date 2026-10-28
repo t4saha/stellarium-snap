@@ -53,8 +53,6 @@ apps:
 layout:
   /usr/share/qt6:
     bind: $SNAP/usr/share/qt6
-  /usr/share/X11/XErrorDB:
-    symlink: $SNAP/gpu-2604/usr/share/X11/XErrorDB
   /usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/libproxy:
     bind: $SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/libproxy
 
@@ -176,10 +174,11 @@ parts:
       - libmd4c-html0
       - libb2-1
       - libminizip1t64
-      - sse3-support
       - calcmysky
       - libtbb12
       - libpipewire-0.3-0t64
+      - on amd64:
+        - sse3-support
       
   cleanup:
     after: [desktop-stellarium, stellarium, gpu-2604]
