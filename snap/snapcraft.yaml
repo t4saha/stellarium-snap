@@ -50,6 +50,8 @@ apps:
       QT_PLUGIN_PATH: $QT_PLUGIN_PATH:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/qt6/plugins
       QTWEBENGINEPROCESS_PATH: $SNAP/usr/lib/qt6/libexec/QtWebEngineProcess
       QTWEBENGINE_DISABLE_SANDBOX: 1
+      SPA_PLUGIN_DIR: $SNAP/usr/lib/$CRAFT_ARCH_TRIPLET/spa-0.2
+      SPA_PLUGIN_PATH: $SNAP/usr/lib/$CRAFT_ARCH_TRIPLET/spa-0.2
 
 layout:
   /usr/share/qt6:
