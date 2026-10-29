@@ -41,6 +41,7 @@ apps:
       - audio-record
       - home
       - raw-usb
+      - pipewire
     common-id: org.stellarium.Stellarium
     
     environment:
